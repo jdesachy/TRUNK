@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view locale="fr">
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{activityControler.init}">
+		</f:event>
+	</f:metadata>
+
+	<h:head>
+		<title><h:outputText value="#{msg['welcome.topTitle']}" /></title>
+		<h:outputStylesheet library="css" name="styles.css" />
+	</h:head>
+	<h:body>
+
+		<div id="welcomPage" class="page">
+
+			<p:tabView activeIndex="#{activityControler.selectedTab}" id="tabActivities">
+				<p:tab title="#{msg['activities.title']}">
+					<ui:include src="allActivities.xhtml" />
+				</p:tab>
+				<p:tab title="#{msg['welcome.title1']}">
+					<ui:include src="ski/formSki.xhtml" />
+				</p:tab>
+				<p:tab title="#{msg['welcome.title2']}">
+					<ui:include src="statistics.xhtml" />
+				</p:tab>
+			</p:tabView>
+
+		</div>
+
+
+	</h:body>
+</f:view>
+</html>

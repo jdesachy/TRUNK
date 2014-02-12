@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="db">
+
+    <class name="Activity" table="ACTIVITIES">
+        <id name="id" column="ID" type="long">
+        	<generator class="increment"/>
+        </id>
+        <property name="date" column="DATE" type="date"/>
+        <property name="name" column="NAME"/>
+        <property name="massif" column="MASSIF"/>
+        <property name="denivele" column="DENIVELE"/>
+        <property name="comment" column="COMMENT"/>
+        <property name="type" column="TYPE"/>
+        
+    </class>
+
+
+</hibernate-mapping>

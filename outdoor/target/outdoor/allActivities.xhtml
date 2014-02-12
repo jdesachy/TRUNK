@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<div id="displayActivities">
+		<h:form>
+
+			<p:dataTable id="listActivities"
+				value="#{activityControler.activitiesBean}" var="a" rows="20"
+				paginator="true" sortBy="date">
+				<f:facet name="header">
+					<h:outputText value="#{msg['activities.title']}" />
+				</f:facet>
+
+				<p:column sortBy="date" class="activity_date">
+					<f:facet name="header">
+						<h:outputText value="#{msg['activities.date']}" />
+					</f:facet>
+					<h:outputText value="#{a.date}">
+					</h:outputText>
+				</p:column>
+				<p:column class="activity_name">
+					<f:facet name="header">
+						<h:outputText value="#{msg['activities.name']}" />
+					</f:facet>
+					<h:outputText value="#{a.name}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['activities.massif']}" />
+					</f:facet>
+					<h:outputText value="#{a.massif}" />
+				</p:column>
+				<p:column sortBy="denivele">
+					<f:facet name="header">
+						<h:outputText value="#{msg['activities.denivele']}" />
+					</f:facet>
+					<h:outputText value="#{a.denivele}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['activities.comment']}" />
+					</f:facet>
+					<h:outputText value="#{a.comment}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['activities.type']}" />
+					</f:facet>
+					<h:outputText value="#{a.type}" />
+				</p:column>
+				<p:column  class="activity_action">
+					<f:facet name="header">
+						<h:outputText value="#{msg['activities.button.action']}" />
+					</f:facet>
+					<p:splitButton value="#{msg['activities.button.update']}">
+						<p:menuitem value="#{msg['activities.button.update']}"
+							action="#{activityControler.update}" update=":tabActivities"
+							icon="ui-icon-arrowrefresh-1-w">
+							<f:setPropertyActionListener
+								target="#{activityControler.actionBean}" value="#{a}" />
+						</p:menuitem>
+						<p:menuitem value="#{msg['activities.button.delete']}"
+							action="#{activityControler.delete}" update="listActivities"
+							icon="ui-icon-close">
+							<f:setPropertyActionListener
+								target="#{activityControler.actionBean}" value="#{a}" />
+						</p:menuitem>
+					</p:splitButton>
+				</p:column>
+
+				<f:facet name="footer">
+					<h:outputText value="#{msg['activities.total']}" />
+					<h:outputText value="#{activityControler.length}" />
+				</f:facet>
+
+			</p:dataTable>
+
+		</h:form>
+	</div>
+
+</ui:composition>

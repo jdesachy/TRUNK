@@ -1,0 +1,15 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<div id="displayStats">
+		<h:form>
+
+			 <p:lineChart value="#{activityControler.formStats.linearModel}" legendPosition="e" zoom="true" animate="true"  
+                title="#{msg['stats.total']}" minY="0" maxY="#{activityControler.formStats.maxTotal + 5000}" style="width:800px;" />  
+
+		</h:form>
+	</div>
+
+</ui:composition>
