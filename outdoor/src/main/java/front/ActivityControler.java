@@ -20,17 +20,10 @@ public class ActivityControler implements Serializable {
 	private final ActivityLoader activityLoader = new ActivityLoader();
 	private List<ActivityBean> activitiesBean = new ArrayList<ActivityBean>();
 	private FormSki formSki = new FormSki();
-	private final FormStats formStats = new FormStats();
 	private ActivityBean actionBean;
 
-	private Integer selectedTab;
-
 	public void init(ComponentSystemEvent event) {
-		if (activitiesBean.isEmpty()) {
-			activitiesBean = activityLoader.loadAllActivity();
-			formStats.setStatisticsBean(activitiesBean);
-			formStats.createTotalChart();
-		}
+		activitiesBean = activityLoader.loadAllActivity();
 	}
 
 	public String delete() {
@@ -59,25 +52,13 @@ public class ActivityControler implements Serializable {
 		return formSki;
 	}
 
+	public String update() {
+		formSki.setActionBean(actionBean);
+		return null;
+	}
+
 	public void setFormSki(FormSki formSki) {
 		this.formSki = formSki;
 	}
 
-	public Integer getSelectedTab() {
-		return selectedTab;
-	}
-
-	public void setSelectedTab(Integer selectedTab) {
-		this.selectedTab = selectedTab;
-	}
-
-	public String update() {
-		formSki.setActionBean(actionBean);
-		selectedTab = 1;
-		return null;
-	}
-
-	public FormStats getFormStats() {
-		return formStats;
-	}
 }

@@ -6,10 +6,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <f:view locale="fr">
-	<f:metadata>
-		<f:event type="preRenderView" listener="#{activityControler.init}"></f:event>
-	</f:metadata>
-
 	<h:head>
 		<title><h:outputText value="#{msg['welcome.topTitle']}" /></title>
 		<h:outputStylesheet library="css" name="styles.css" />
@@ -17,19 +13,9 @@
 	<h:body>
 
 		<div id="welcomPage" class="page">
-
-			<p:tabView activeIndex="#{activityControler.selectedTab}" id="tabActivities">
-				<p:tab title="#{msg['activities.title']}">
-					<ui:include src="allActivities.xhtml" />
-				</p:tab>
-				<p:tab title="#{msg['welcome.title1']}">
-					<ui:include src="ski/formSki.xhtml" />
-				</p:tab>
-				<p:tab title="#{msg['welcome.title2']}">
-					<ui:include src="statistics.xhtml" />
-				</p:tab>
-			</p:tabView>
-
+			<ui:include src="/menu.xhtml" >
+				<ui:param name="index" value="0" />
+			</ui:include>
 		</div>
 
 

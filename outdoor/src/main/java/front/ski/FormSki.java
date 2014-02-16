@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 import org.hibernate.Session;
 
@@ -18,7 +18,7 @@ import db.ActivityType;
 import front.ActivityBean;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class FormSki implements Serializable {
 
 	private static final long serialVersionUID = -7268492525793192133L;
@@ -35,7 +35,7 @@ public class FormSki implements Serializable {
 
 	public String validate() throws UnknownHostException, IOException {
 		createActivity();
-		return null;
+		return "success";
 	}
 
 	private void createActivity() {
@@ -63,7 +63,7 @@ public class FormSki implements Serializable {
 		session.beginTransaction();
 		session.update(updatedActivity);
 		session.getTransaction().commit();
-		return null;
+		return "success";
 	}
 
 	public String getName() {

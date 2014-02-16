@@ -32,5 +32,76 @@
     <message-bundle>messages</message-bundle>
   </application> 
 
+<navigation-rule>
+	<from-view-id>index.xhtml</from-view-id>
+	<navigation-case>
+		<from-outcome>list</from-outcome>
+		<to-view-id>/allActivities.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>edit</from-outcome>
+		<to-view-id>/ski/formSki.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>stats</from-outcome>
+		<to-view-id>statistics.xhtml</to-view-id>
+	</navigation-case>
+</navigation-rule>
+
+
+<navigation-rule>
+	<from-view-id>/allActivities.xhtml</from-view-id>
+	<navigation-case>
+		<from-outcome>list</from-outcome>
+		<to-view-id>/allActivities.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>edit</from-outcome>
+		<to-view-id>/ski/formSki.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>stats</from-outcome>
+		<to-view-id>statistics.xhtml</to-view-id>
+	</navigation-case>
+</navigation-rule>
+
+
+<navigation-rule>
+	<from-view-id>/ski/formSki.xhtml</from-view-id>
+	<navigation-case>
+		<from-outcome>list</from-outcome>
+		<to-view-id>/allActivities.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>edit</from-outcome>
+		<to-view-id>/ski/formSki.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>stats</from-outcome>
+		<to-view-id>statistics.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>success</from-outcome>
+		<to-view-id>/allActivities.xhtml</to-view-id>
+	</navigation-case>
+</navigation-rule>
+
+
+<navigation-rule>
+	<from-view-id>statistics.xhtml</from-view-id>
+	<navigation-case>
+		<from-outcome>list</from-outcome>
+		<to-view-id>/allActivities.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>edit</from-outcome>
+		<to-view-id>/ski/formSki.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>stats</from-outcome>
+		<to-view-id>statistics.xhtml</to-view-id>
+	</navigation-case>
+</navigation-rule>
+
 
 </faces-config>

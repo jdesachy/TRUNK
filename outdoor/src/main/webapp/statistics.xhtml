@@ -1,15 +1,31 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	<div id="displayStats">
-		<h:form>
+<f:metadata>
+	<f:event type="preRenderView"
+		listener="#{statisticController.loadStatistics}"></f:event>
+</f:metadata>
 
-			 <p:lineChart value="#{activityControler.formStats.linearModel}" legendPosition="e" zoom="true" animate="true"  
-                title="#{msg['stats.total']}" minY="0" maxY="#{activityControler.formStats.maxTotal + 5000}" style="width:800px;" />  
+<h:head>
+	<title><h:outputText value="#{msg['welcome.topTitle']}" /></title>
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
 
-		</h:form>
+	<div id="welcomPage" class="page">
+		<ui:include src="/menu.xhtml">
+			<ui:param name="index" value="2" />
+		</ui:include>
+		<p:lineChart value="#{statisticController.linearModel}"
+			legendPosition="e" zoom="true" animate="true"
+			title="#{msg['stats.total']}" minY="0"
+			maxY="#{statisticController.maxTotal + 5000}" style="width:800px;" />
 	</div>
 
-</ui:composition>
+
+</h:body>
+</html>
