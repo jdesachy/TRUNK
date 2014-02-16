@@ -26,10 +26,6 @@ public class StatisticController implements Serializable {
 
 	public void loadStatistics(ComponentSystemEvent event) {
 		List<ActivityBean> activitiesBean = activityLoader.loadAllActivity();
-		createTotalChart(activitiesBean);
-	}
-
-	public void createTotalChart(List<ActivityBean> activitiesBean) {
 		linearModel = chartBuilder.getTotalChart(activitiesBean);
 		maxTotal = chartBuilder.getMax(linearModel);
 	}
@@ -38,16 +34,8 @@ public class StatisticController implements Serializable {
 		return linearModel;
 	}
 
-	public void setLinearModel(CartesianChartModel linearModel) {
-		this.linearModel = linearModel;
-	}
-
 	public int getMaxTotal() {
 		return maxTotal;
-	}
-
-	public void setMaxTotal(int maxTotal) {
-		this.maxTotal = maxTotal;
 	}
 
 }

@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import org.hibernate.Session;
 
@@ -18,10 +18,11 @@ import db.ActivityType;
 import front.ActivityBean;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class FormSki implements Serializable {
 
 	private static final long serialVersionUID = -7268492525793192133L;
+	private ActivityBean actionBean;
 
 	private String name;
 	private String comment;
@@ -45,6 +46,17 @@ public class FormSki implements Serializable {
 		session.getTransaction().commit();
 	}
 
+	public String save() {
+		Activity updatedActivity = buildActivity();
+		updatedActivity.setId(id);
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		session.update(updatedActivity);
+		session.getTransaction().commit();
+		clean();
+		return "success";
+	}
+
 	private Activity buildActivity() {
 		Activity activity = new Activity();
 		activity.setName(name);
@@ -54,16 +66,6 @@ public class FormSki implements Serializable {
 		activity.setComment(comment);
 		activity.setType(ActivityType.SKI.name());
 		return activity;
-	}
-
-	public String update() {
-		Activity updatedActivity = buildActivity();
-		updatedActivity.setId(id);
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		session.update(updatedActivity);
-		session.getTransaction().commit();
-		return "success";
 	}
 
 	public String getName() {
@@ -109,7 +111,7 @@ public class FormSki implements Serializable {
 		this.traveledAltitude = traveledAltitude;
 	}
 
-	public void setActionBean(ActivityBean actionBean) {
+	public String update() {
 		this.setEdit(true);
 		this.id = actionBean.getId();
 		this.name = actionBean.getName();
@@ -117,6 +119,16 @@ public class FormSki implements Serializable {
 		this.traveledAltitude = actionBean.getDenivele();
 		this.comment = actionBean.getComment();
 		this.massif = actionBean.getMassif();
+		return "edit";
+	}
+
+	private void clean() {
+		this.setEdit(false);
+		this.name = null;
+		this.date = null;
+		this.traveledAltitude = 0;
+		this.comment = null;
+		this.massif = null;
 	}
 
 	public boolean isEdit() {
@@ -133,6 +145,14 @@ public class FormSki implements Serializable {
 
 	public void setMassif(String massif) {
 		this.massif = massif;
+	}
+
+	public ActivityBean getActionBean() {
+		return actionBean;
+	}
+
+	public void setActionBean(ActivityBean actionBean) {
+		this.actionBean = actionBean;
 	}
 
 }

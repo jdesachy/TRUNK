@@ -9,23 +9,23 @@
 	<f:event type="preRenderView"
 		listener="#{statisticController.loadStatistics}"></f:event>
 </f:metadata>
-
 <h:head>
 	<title><h:outputText value="#{msg['welcome.topTitle']}" /></title>
 	<h:outputStylesheet library="css" name="styles.css" />
 </h:head>
+
 <h:body>
 
 	<div id="welcomPage" class="page">
 		<ui:include src="/menu.xhtml">
 			<ui:param name="index" value="2" />
 		</ui:include>
+
 		<p:lineChart value="#{statisticController.linearModel}"
 			legendPosition="e" zoom="true" animate="true"
 			title="#{msg['stats.total']}" minY="0"
 			maxY="#{statisticController.maxTotal + 5000}" style="width:800px;" />
 	</div>
-
 
 </h:body>
 </html>

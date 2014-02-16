@@ -25,7 +25,7 @@
 					<h:panelGroup class="r">
 						<p:inputText 
 							id="name" 
-							value="#{activityControler.formSki.name}"
+							value="#{formSki.name}"
 							required="true" 
 							requiredMessage="#{msg['data.required']}"
 							class="form_name" />
@@ -37,7 +37,7 @@
 						<h:outputText value="#{msg['form.activity.date']}" />
 					</h:panelGroup>
 					<h:panelGroup class="r">
-						<p:calendar value="#{activityControler.formSki.date}"
+						<p:calendar value="#{formSki.date}"
 							showOn="button"
 							id="inlineCal" 
 							required="true"
@@ -50,9 +50,9 @@
 						<h:outputText value="#{msg['form.activity.massif']}" />
 					</h:panelGroup>
 					<h:panelGroup class="r">
-						<p:selectOneMenu value="#{activityControler.formSki.massif}">
+						<p:selectOneMenu value="#{formSki.massif}">
 							<f:selectItems id="montagne"
-								value="#{activityControler.formSki.massifs}" required="true" />
+								value="#{formSki.massifs}" required="true" />
 							<br />
 							<h:message for="montagne" styleClass="error" />
 						</p:selectOneMenu>
@@ -63,7 +63,7 @@
 					</h:panelGroup>
 					<h:panelGroup class="r">
 						<p:inputText id="altitude"
-							value="#{activityControler.formSki.traveledAltitude}"
+							value="#{formSki.traveledAltitude}"
 							required="true" requiredMessage="#{msg['data.required']}"
 							converterMessage="#{msg['data.entier']}" />
 						<br />
@@ -75,7 +75,7 @@
 					</h:panelGroup>
 					<h:panelGroup class="r">
 						<p:inputTextarea id="comment"
-							value="#{activityControler.formSki.comment}" 
+							value="#{formSki.comment}" 
 							class="form_comment"/>
 						<br />
 						<h:message for="comment" styleClass="error" />
@@ -83,14 +83,14 @@
 				</h:panelGrid>
 		
 				<p:commandButton value="#{msg['form.save']}"
-					action="#{activityControler.formSki.validate}"
-					rendered="#{activityControler.formSki.edit==false}"
+					action="#{formSki.validate}"
+					rendered="#{formSki.edit==false}"
 					icon="ui-icon-disk">
 				</p:commandButton>
 		
 				<p:commandButton value="#{msg['form.update']}"
-					action="#{activityControler.formSki.update}"
-					rendered="#{activityControler.formSki.edit==true}"
+					action="#{formSki.save}" 
+					rendered="#{formSki.edit==true}"
 					icon="ui-icon-arrowrefresh-1-w">
 				</p:commandButton>
 		

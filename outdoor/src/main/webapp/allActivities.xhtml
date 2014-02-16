@@ -66,10 +66,10 @@
 						</f:facet>
 						<p:splitButton value="#{msg['activities.button.update']}">
 							<p:menuitem value="#{msg['activities.button.update']}"
-								action="#{activityControler.update}"
+								action="#{formSki.update}"
 								icon="ui-icon-arrowrefresh-1-w">
 								<f:setPropertyActionListener
-									target="#{activityControler.actionBean}" value="#{a}" />
+									target="#{formSki.actionBean}" value="#{a}" />
 							</p:menuitem>
 							<p:menuitem value="#{msg['activities.button.delete']}"
 								action="#{activityControler.delete}" update="listActivities"

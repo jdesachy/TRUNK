@@ -9,7 +9,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.ComponentSystemEvent;
 
 import db.ActivityLoader;
-import front.ski.FormSki;
 
 @ManagedBean(eager = true)
 @ViewScoped
@@ -19,7 +18,6 @@ public class ActivityControler implements Serializable {
 
 	private final ActivityLoader activityLoader = new ActivityLoader();
 	private List<ActivityBean> activitiesBean = new ArrayList<ActivityBean>();
-	private FormSki formSki = new FormSki();
 	private ActivityBean actionBean;
 
 	public void init(ComponentSystemEvent event) {
@@ -46,19 +44,6 @@ public class ActivityControler implements Serializable {
 
 	public int getLength() {
 		return activitiesBean.size();
-	}
-
-	public FormSki getFormSki() {
-		return formSki;
-	}
-
-	public String update() {
-		formSki.setActionBean(actionBean);
-		return null;
-	}
-
-	public void setFormSki(FormSki formSki) {
-		this.formSki = formSki;
 	}
 
 }
