@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.event.ComponentSystemEvent;
 
 import db.ActivityLoader;
 
@@ -20,8 +19,9 @@ public class ActivityControler implements Serializable {
 	private List<ActivityBean> activitiesBean = new ArrayList<ActivityBean>();
 	private ActivityBean actionBean;
 
-	public void init(ComponentSystemEvent event) {
+	public String init() {
 		activitiesBean = activityLoader.loadAllActivity();
+		return "list";
 	}
 
 	public String delete() {
