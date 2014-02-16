@@ -14,10 +14,12 @@
 		<div id="welcomPage" class="page">
 
 			<ui:include src="/menu.xhtml" >
-				<ui:param name="index" value="0" />
+				<ui:param name="index" value="1" />
 			</ui:include>
 
 			<h:form>
+				<p:growl id="growl" showDetail="true" sticky="true" /> 
+
 				<p:dataTable id="listActivities"
 					value="#{activityControler.activitiesBean}" var="a" rows="20"
 					paginator="true" sortBy="date" sortOrder="descending">

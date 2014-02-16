@@ -22,6 +22,13 @@ body {
 	box-shadow:         6px 6px 10px 0px rgba(50, 50, 50, 0.9);
 }
 
+.generalMenu{
+	margin-bottom: 40px;	
+}
+
+.formValidation{
+	text-align: center;
+}
 #formSki{
 	width: 400 px;
 }

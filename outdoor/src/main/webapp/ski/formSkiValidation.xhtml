@@ -1,5 +1,3 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -11,15 +9,22 @@
 		<h:outputStylesheet library="css" name="styles.css" />
 	</h:head>
 	<h:body>
-
 		<div id="welcomPage" class="page">
-			<ui:include src="/menu.xhtml" >
-				<ui:param name="index" value="0" />
-			</ui:include>
-			
-			BIenvenue sur mon site ! je ne sais encore pas ce que je vais mettre ici.
-		</div>
 
+			<ui:include src="/menu.xhtml" >
+				<ui:param name="index" value="2" />
+			</ui:include>
+
+			<div class="formValidation">
+				<h:outputText value="#{msg['form.validation']}"/>
+			</div>
+			<h:form style="text-align: right;">		
+				<p:commandButton value="#{msg['form.backHome']}"
+					action="#{activityControler.init}" 
+					icon="ui-icon-arrowrefresh-1-w">
+				</p:commandButton>
+			</h:form>
+		</div>
 	</h:body>
 </f:view>
 </html>

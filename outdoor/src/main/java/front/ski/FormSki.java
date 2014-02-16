@@ -44,6 +44,7 @@ public class FormSki implements Serializable {
 		session.beginTransaction();
 		session.save(buildActivity());
 		session.getTransaction().commit();
+		clean();
 	}
 
 	public String save() {
