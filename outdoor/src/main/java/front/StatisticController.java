@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ComponentSystemEvent;
 
 import org.primefaces.model.chart.CartesianChartModel;
@@ -12,8 +12,8 @@ import org.primefaces.model.chart.CartesianChartModel;
 import db.ActivityLoader;
 import front.stats.ChartBuilder;
 
-@ManagedBean
-@ViewScoped
+@ManagedBean(name = "statisticController")
+@SessionScoped
 public class StatisticController implements Serializable {
 
 	private static final long serialVersionUID = 7725937619205823317L;

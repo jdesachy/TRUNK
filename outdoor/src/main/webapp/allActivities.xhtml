@@ -18,8 +18,6 @@
 			</ui:include>
 
 			<h:form>
-				<p:growl id="growl" showDetail="true" sticky="true" /> 
-
 				<p:dataTable id="listActivities"
 					value="#{activityControler.activitiesBean}" var="a" rows="20"
 					paginator="true" sortBy="date" sortOrder="descending">

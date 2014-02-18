@@ -3,8 +3,13 @@ package front;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
 import db.Activity;
 
+@ManagedBean(name = "activityBean")
+@ViewScoped
 public class ActivityBean implements Serializable {
 
 	private static final long serialVersionUID = 4437794882806300607L;

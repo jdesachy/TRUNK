@@ -8,7 +8,7 @@
 <h:form>
 	<p:tabMenu activeIndex="#{index}" class="generalMenu">
 		<p:menuitem value="#{msg['home']}" action="home" icon="ui-icon-extlink" />
-		<p:menuitem value="#{msg['activities.title']}" action="#{activityControler.init}" icon="ui-icon-star" />
+		<p:menuitem value="#{msg['activities.title']}" action="#{activityControler.loadList}" icon="ui-icon-star" />
 		<p:menuitem value="#{msg['welcome.title1']}" action="edit" icon="ui-icon-pencil" />
 		<p:menuitem value="#{msg['welcome.title2']}" action="stats" icon="ui-icon-search" />
 	</p:tabMenu>

@@ -30,7 +30,7 @@
 							requiredMessage="#{msg['data.required']}"
 							class="form_name" />
 						<br />
-						<h:message for="name" styleClass="error" />
+						<p:message for="name" styleClass="error" />
 					</h:panelGroup>
 		
 					<h:panelGroup class="l">
@@ -43,7 +43,7 @@
 							required="true"
 							requiredMessage="#{msg['data.required']}" />
 						<br />
-						<h:message for="inlineCal" styleClass="error" />
+						<p:message for="inlineCal" styleClass="error" />
 					</h:panelGroup>
 		
 					<h:panelGroup class="l">
@@ -54,7 +54,7 @@
 							<f:selectItems id="montagne"
 								value="#{formSki.massifs}" required="true" />
 							<br />
-							<h:message for="montagne" styleClass="error" />
+							<p:message for="montagne" styleClass="error" />
 						</p:selectOneMenu>
 					</h:panelGroup>
 		
@@ -67,7 +67,7 @@
 							required="true" requiredMessage="#{msg['data.required']}"
 							converterMessage="#{msg['data.entier']}" />
 						<br />
-						<h:message for="altitude" styleClass="error" />
+						<p:message for="altitude" styleClass="error" />
 					</h:panelGroup>
 		
 					<h:panelGroup class="l">
@@ -78,7 +78,6 @@
 							value="#{formSki.comment}" 
 							class="form_comment"/>
 						<br />
-						<h:message for="comment" styleClass="error" />
 					</h:panelGroup>
 				</h:panelGrid>
 		
