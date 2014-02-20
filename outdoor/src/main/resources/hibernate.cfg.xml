@@ -29,5 +29,6 @@
 
 
 		<mapping resource="db/Activity.hbm.xml" />
+		<mapping resource="db/Person.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

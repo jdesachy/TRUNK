@@ -83,12 +83,14 @@
 		
 				<p:commandButton value="#{msg['form.save']}"
 					action="#{formSki.validate}"
+					update="formulaireSki"
 					rendered="#{formSki.edit==false}"
 					icon="ui-icon-disk">
 				</p:commandButton>
 		
 				<p:commandButton value="#{msg['form.update']}"
 					action="#{formSki.save}" 
+					update="formulaireSki"
 					rendered="#{formSki.edit==true}"
 					icon="ui-icon-arrowrefresh-1-w">
 				</p:commandButton>

@@ -9,12 +9,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.primefaces.model.chart.BarChartSeries;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 
 import front.ActivityBean;
 
-public class ChartBuilder implements Serializable {
+public class ChartBuilder  implements Serializable{
 
 	private static final long serialVersionUID = -341228354196134346L;
 
@@ -23,7 +24,7 @@ public class ChartBuilder implements Serializable {
 
 		List<Integer> years = initYears(statisticsBean);
 		StatisticBuilder statsBuilder = new StatisticBuilder(statisticsBean);
-		ChartSeries series1 = new ChartSeries();
+		BarChartSeries series1 = new BarChartSeries();
 		series1.setLabel("Series 1");
 		for (Integer curYear : years) {
 			int totalTraveled = statsBuilder.getTotalTraveled(curYear);

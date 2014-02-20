@@ -5,12 +5,26 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:form>
-	<p:tabMenu activeIndex="#{index}" class="generalMenu">
-		<p:menuitem value="#{msg['home']}" action="home" icon="ui-icon-extlink" />
-		<p:menuitem value="#{msg['activities.title']}" action="#{activityControler.loadList}" icon="ui-icon-star" />
-		<p:menuitem value="#{msg['welcome.title1']}" action="edit" icon="ui-icon-pencil" />
-		<p:menuitem value="#{msg['welcome.title2']}" action="stats" icon="ui-icon-search" />
-	</p:tabMenu>
-</h:form>
+	<h:form>
+		<p:megaMenu>
+			<p:menuitem value="#{msg['home']}" action="home"
+				icon="ui-icon-extlink" />
+			<p:menuitem value="#{msg['activities.title']}"
+				action="#{activityControler.loadList}" icon="ui-icon-star" />
+			<p:menuitem value="#{msg['welcome.title1']}" action="edit"
+				icon="ui-icon-pencil" />
+			<p:menuitem value="#{msg['welcome.title2']}"
+				action="#{statisticController.loadStatistics}" icon="ui-icon-search" />
+			<p:submenu label="#{msg['welcome.title3']}" icon="ui-icon-gear">
+				<p:column>
+					<p:submenu>
+						<p:menuitem value="#{msg['welcome.title3sub1']}"
+							action="#{statisticController.loadStatistics}"
+							icon="ui-icon-person" />
+					</p:submenu>
+				</p:column>
+			</p:submenu>
+
+		</p:megaMenu>
+	</h:form>
 </ui:composition>

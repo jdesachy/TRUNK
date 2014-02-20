@@ -5,9 +5,9 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.event.ComponentSystemEvent;
 
 import org.primefaces.model.chart.CartesianChartModel;
+import org.primefaces.model.chart.ChartModel;
 
 import db.ActivityLoader;
 import front.stats.ChartBuilder;
@@ -24,13 +24,14 @@ public class StatisticController implements Serializable {
 	private CartesianChartModel linearModel;
 	private int maxTotal;
 
-	public void loadStatistics(ComponentSystemEvent event) {
+	public String loadStatistics() {
 		List<ActivityBean> activitiesBean = activityLoader.loadAllActivity();
 		linearModel = chartBuilder.getTotalChart(activitiesBean);
 		maxTotal = chartBuilder.getMax(linearModel);
+		return "stats";
 	}
 
-	public CartesianChartModel getLinearModel() {
+	public ChartModel getLinearModel() {
 		return linearModel;
 	}
 

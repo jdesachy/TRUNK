@@ -6,7 +6,7 @@ import java.util.List;
 
 import front.ActivityBean;
 
-public class StatisticBuilder implements Serializable {
+public class StatisticBuilder  implements Serializable{
 
 	private static final long serialVersionUID = 7035819998641155616L;
 	private final List<ActivityBean> statisticsBean;

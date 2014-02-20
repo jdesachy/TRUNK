@@ -5,10 +5,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-<f:metadata>
-	<f:event type="preRenderView"
-		listener="#{statisticController.loadStatistics}"></f:event>
-</f:metadata>
 <h:head>
 	<title><h:outputText value="#{msg['welcome.topTitle']}" /></title>
 	<h:outputStylesheet library="css" name="styles.css" />
@@ -20,11 +16,11 @@
 		<ui:include src="/menu.xhtml">
 			<ui:param name="index" value="3" />
 		</ui:include>
-
+		
 		<p:lineChart value="#{statisticController.linearModel}"
-			legendPosition="e" zoom="true" animate="true"
+			legendPosition="e" zoom="false" animate="false"
 			title="#{msg['stats.total']}" minY="0"
-			maxY="#{statisticController.maxTotal + 5000}" style="width:800px;" />
+			maxY="#{statisticController.maxTotal + 5000}"/>
 	</div>
 
 </h:body>

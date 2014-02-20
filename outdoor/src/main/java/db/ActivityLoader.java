@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import Connection.HibernateUtil;
 import front.ActivityBean;
 
-public class ActivityLoader implements Serializable {
+public class ActivityLoader  implements Serializable{
 
 	private static final long serialVersionUID = 4636327288530128841L;
 

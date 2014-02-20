@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import org.hibernate.Session;
 
@@ -18,7 +18,7 @@ import db.ActivityType;
 import front.ActivityBean;
 
 @ManagedBean(name = "formSki")
-@RequestScoped
+@SessionScoped
 public class FormSki implements Serializable {
 
 	private static final long serialVersionUID = -7268492525793192133L;
