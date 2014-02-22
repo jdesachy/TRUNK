@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view locale="fr">
+	<h:head>
+		<title><h:outputText value="#{msg['welcome.topTitle']}" /></title>
+		<h:outputStylesheet library="css" name="styles.css" />
+	</h:head>
+	<h:body>
+		<div id="welcomPage" class="page">
+
+			<ui:include src="/menu.xhtml" />
+
+			<h:form id="listProfile">
+				<p:growl id="messages" />
+
+				<p:dataTable value="#{profileController.persons}" var="p"
+					id="tableProfile">
+					<p:column>
+						<h:outputText value="#{p.firstName}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{p.lastName}" />
+					</p:column>
+					<p:column>
+						<p:commandButton actionListener="#{profileController.delete}"
+							update="tableProfile" id="iconOnly" icon="ui-icon-disk">
+							<f:setPropertyActionListener
+								target="#{profileController.personBean}" value="#{p}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+			</h:form>
+		</div>
+	</h:body>
+</f:view>
+</html>

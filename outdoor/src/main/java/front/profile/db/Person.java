@@ -1,12 +1,14 @@
-package db;
+package front.profile.db;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import db.DBObject;
+
 @Table
 @Entity
-public class Person {
+public class Person implements DBObject {
 
 	@Id
 	private long id;

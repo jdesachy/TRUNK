@@ -1,4 +1,4 @@
-package front;
+package front.activity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import db.ActivityLoader;
+import front.activity.db.ActivityDBDelegate;
 
 @ManagedBean(name = "activityControler")
 @SessionScoped
@@ -15,7 +15,7 @@ public class ActivityControler implements Serializable {
 
 	private static final long serialVersionUID = -6035201373818263225L;
 
-	private final ActivityLoader activityLoader = new ActivityLoader();
+	private final ActivityDBDelegate activityLoader = new ActivityDBDelegate();
 
 	private ActivityBean actionBean;
 

@@ -1,16 +1,20 @@
-package db;
+package front.activity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
-@Table
-@Entity
-public class Activity {
+import db.Bean;
+import front.activity.db.Activity;
 
-	@Id
+@ManagedBean(name = "activityBean")
+@ViewScoped
+public class ActivityBean implements Serializable, Bean {
+
+	private static final long serialVersionUID = 4437794882806300607L;
+
 	private long id;
 	private String name;
 	private Date date;
@@ -75,4 +79,26 @@ public class Activity {
 		this.comment = comment;
 	}
 
+	public ActivityBean(Activity activity) {
+		this.id = activity.getId();
+		this.name = activity.getName();
+		this.date = activity.getDate();
+		this.massif = activity.getMassif();
+		this.denivele = activity.getDenivele();
+		this.comment = activity.getComment();
+		this.type = activity.getType();
+	}
+
+	@Override
+	public Activity toDBObject() {
+		Activity activity = new Activity();
+		activity.setId(id);
+		activity.setName(name);
+		activity.setMassif(massif);
+		activity.setDate(date);
+		activity.setDenivele(denivele);
+		activity.setComment(comment);
+		activity.setType(type);
+		return activity;
+	}
 }

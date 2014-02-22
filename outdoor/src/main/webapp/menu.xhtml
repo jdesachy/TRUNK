@@ -6,7 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<h:form>
-		<p:megaMenu>
+		<p:megaMenu class="globalMenu">
 			<p:menuitem value="#{msg['home']}" action="home"
 				icon="ui-icon-extlink" />
 			<p:menuitem value="#{msg['activities.title']}"
@@ -20,6 +20,9 @@
 					<p:submenu>
 						<p:menuitem value="#{msg['welcome.title3sub1']}"
 							action="newProfile"
+							icon="ui-icon-person" />
+						<p:menuitem value="#{msg['welcome.title3sub2']}"
+							action="#{profileController.listAll}"
 							icon="ui-icon-person" />
 					</p:submenu>
 				</p:column>

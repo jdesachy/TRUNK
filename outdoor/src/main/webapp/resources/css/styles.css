@@ -22,7 +22,7 @@ body {
 	box-shadow:         6px 6px 10px 0px rgba(50, 50, 50, 0.9);
 }
 
-.generalMenu{
+.globalMenu{
 	margin-bottom: 40px;	
 }
 
@@ -41,6 +41,11 @@ body {
 
 #displayActivities{
 	margin: 40px 0 0 0;
+}
+
+#formulaireProfile table{
+	width: 400px;
+	text-align: right;
 }
 
 .activity_date{

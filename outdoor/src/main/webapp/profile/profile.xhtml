@@ -14,11 +14,31 @@
 			<ui:include src="/menu.xhtml" />
 
 			<h:form id="formulaireProfile">
-				<h:outputText />
-				<p:inputText value="#{personBean.firstName}"/>
+				<p:growl id="growl" showDetail="true" sticky="true" />
+			
+				<h:panelGrid columns="2">
+					<h:panelGroup>
+						<h:outputText value="#{msg['form.profile.firstName']}" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText value="#{personBean.firstName}" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<h:outputText value="#{msg['form.profile.lastName']}" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText value="#{personBean.lastName}" />
+					</h:panelGroup>
+				</h:panelGrid>
 
-				<h:outputText />
-				<p:inputText value="#{personBean.lastName}"/>
+				<p:commandButton value="#{msg['form.save']}"
+					action="#{profileController.createNew}"
+					update="growl"
+					ajax="false"
+					icon="ui-icon-disk">
+					<f:setPropertyActionListener
+									target="#{profileController.personBean}" value="#{personBean}" />
+				</p:commandButton>
 			</h:form>
 		</div>
 	</h:body>

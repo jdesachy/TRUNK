@@ -13,7 +13,7 @@ import org.primefaces.model.chart.BarChartSeries;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 
-import front.ActivityBean;
+import front.activity.ActivityBean;
 
 public class ChartBuilder  implements Serializable{
 

@@ -13,9 +13,9 @@ import javax.faces.bean.SessionScoped;
 import org.hibernate.Session;
 
 import Connection.HibernateUtil;
-import db.Activity;
-import db.ActivityType;
-import front.ActivityBean;
+import front.activity.ActivityBean;
+import front.activity.db.Activity;
+import front.activity.db.ActivityType;
 
 @ManagedBean(name = "formSki")
 @SessionScoped
