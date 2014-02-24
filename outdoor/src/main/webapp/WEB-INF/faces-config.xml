@@ -166,7 +166,7 @@
 </navigation-rule>
 
 <navigation-rule>
-	<from-view-id>/profile/profile.xhtml</from-view-id>
+	<from-view-id>/profile/profileList.xhtml</from-view-id>
 	<navigation-case>
 		<from-outcome>home</from-outcome>
 		<to-view-id>/index.xhtml</to-view-id>
@@ -187,6 +187,10 @@
 		<from-outcome>success</from-outcome>
 		<to-view-id>/index.xhtml</to-view-id>
 	</navigation-case>
+	<navigation-case>
+		<from-outcome>newProfile</from-outcome>
+		<to-view-id>/profile/profile.xhtml</to-view-id>
+	</navigation-case>	
 	<navigation-case>
 		<from-outcome>listProfiles</from-outcome>
 		<to-view-id>/profile/profileList.xhtml</to-view-id>

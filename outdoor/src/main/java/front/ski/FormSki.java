@@ -5,17 +5,24 @@ import java.io.Serializable;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 
 import org.hibernate.Session;
 
 import Connection.HibernateUtil;
 import front.activity.ActivityBean;
 import front.activity.db.Activity;
+import front.activity.db.ActivityDBDelegate;
 import front.activity.db.ActivityType;
+import front.profile.PersonBean;
+import front.profile.db.Person;
+import front.profile.db.ProfileDBDelegate;
 
 @ManagedBean(name = "formSki")
 @SessionScoped
@@ -31,8 +38,16 @@ public class FormSki implements Serializable {
 	private String massif;
 	private int traveledAltitude;
 	private long id;
+	private Set<PersonBean> selectedPersons;
+	private List<PersonBean> listPersons;
 
 	private boolean edit;
+	private final ProfileDBDelegate profileDBDelegate = new ProfileDBDelegate();
+	private final ActivityDBDelegate activityDBDelegate = new ActivityDBDelegate();
+
+	public void initProfiles(ComponentSystemEvent componentSystemEvent) {
+		listPersons = profileDBDelegate.loadProfiles();
+	}
 
 	public String validate() throws UnknownHostException, IOException {
 		createActivity();
@@ -65,8 +80,17 @@ public class FormSki implements Serializable {
 		activity.setDenivele(traveledAltitude);
 		activity.setMassif(massif);
 		activity.setComment(comment);
+		activity.setPersons(convertBean(selectedPersons));
 		activity.setType(ActivityType.SKI.name());
 		return activity;
+	}
+
+	private Set<Person> convertBean(Set<PersonBean> selectedPersons2) {
+		Set<Person> res = new HashSet<Person>();
+		for (PersonBean personBean : selectedPersons2) {
+			res.add(personBean.toDBObject());
+		}
+		return res;
 	}
 
 	public String getName() {
@@ -154,6 +178,22 @@ public class FormSki implements Serializable {
 
 	public void setActionBean(ActivityBean actionBean) {
 		this.actionBean = actionBean;
+	}
+
+	public Set<PersonBean> getSelectedPersons() {
+		return selectedPersons;
+	}
+
+	public void setSelectedPersons(Set<PersonBean> selectedPersons) {
+		this.selectedPersons = selectedPersons;
+	}
+
+	public List<PersonBean> getListPersons() {
+		return listPersons;
+	}
+
+	public void setListPersons(List<PersonBean> listPersons) {
+		this.listPersons = listPersons;
 	}
 
 }

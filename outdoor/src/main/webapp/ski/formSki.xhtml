@@ -4,6 +4,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <f:view locale="fr">
+	<f:event listener="#{formSki.initProfiles}" type="preRenderView" />
 	<h:head>
 		<title><h:outputText value="#{msg['welcome.topTitle']}" /></title>
 		<h:outputStylesheet library="css" name="styles.css" />
@@ -15,85 +16,85 @@
 
 			<h:outputText value="#{msg['ski.form.title']}" />
 			<h:form id="formulaireSki">
-		
+
 				<h:panelGrid columns="2" id="formSki">
 					<h:panelGroup class="l">
 						<h:outputText value="#{msg['form.activity.name']}" />
 					</h:panelGroup>
 					<h:panelGroup class="r">
-						<p:inputText 
-							id="name" 
-							value="#{formSki.name}"
-							required="true" 
-							requiredMessage="#{msg['data.required']}"
-							class="form_name" />
+						<p:inputText id="name" value="#{formSki.name}" required="true"
+							requiredMessage="#{msg['data.required']}" class="form_name" />
 						<br />
 						<p:message for="name" styleClass="error" />
 					</h:panelGroup>
-		
+
 					<h:panelGroup class="l">
 						<h:outputText value="#{msg['form.activity.date']}" />
 					</h:panelGroup>
 					<h:panelGroup class="r">
-						<p:calendar value="#{formSki.date}"
-							showOn="button"
-							id="inlineCal" 
-							required="true"
-							requiredMessage="#{msg['data.required']}" />
+						<p:calendar value="#{formSki.date}" showOn="button" id="inlineCal"
+							required="true" requiredMessage="#{msg['data.required']}" />
 						<br />
 						<p:message for="inlineCal" styleClass="error" />
 					</h:panelGroup>
-		
+
+					<h:panelGroup class="l">
+						<h:outputText value="#{msg['form.activity.profiles']}" />
+					</h:panelGroup>
+					<h:panelGroup class="r">
+						<p:selectManyMenu class="selectProfiles" showCheckbox="true"
+							converter="ProfileConverter" value="#{formSki.selectedPersons}"
+							filter="true" filterText="Filter" filterMatchMode="startsWith">
+
+							<f:selectItems value="#{formSki.listPersons}" var="#{person}" />
+						</p:selectManyMenu>
+
+					</h:panelGroup>
+
 					<h:panelGroup class="l">
 						<h:outputText value="#{msg['form.activity.massif']}" />
 					</h:panelGroup>
 					<h:panelGroup class="r">
 						<p:selectOneMenu value="#{formSki.massif}">
-							<f:selectItems id="montagne"
-								value="#{formSki.massifs}" required="true" />
+							<f:selectItems id="montagne" value="#{formSki.massifs}"
+								required="true" />
 							<br />
 							<p:message for="montagne" styleClass="error" />
 						</p:selectOneMenu>
 					</h:panelGroup>
-		
+
 					<h:panelGroup class="l">
 						<h:outputText value="#{msg['form.activity.traveledAltitude']}" />
 					</h:panelGroup>
 					<h:panelGroup class="r">
-						<p:inputText id="altitude"
-							value="#{formSki.traveledAltitude}"
+						<p:inputText id="altitude" value="#{formSki.traveledAltitude}"
 							required="true" requiredMessage="#{msg['data.required']}"
 							converterMessage="#{msg['data.entier']}" />
 						<br />
 						<p:message for="altitude" styleClass="error" />
 					</h:panelGroup>
-		
+
 					<h:panelGroup class="l">
 						<h:outputText value="#{msg['form.activity.comment']}" />
 					</h:panelGroup>
 					<h:panelGroup class="r">
-						<p:inputTextarea id="comment"
-							value="#{formSki.comment}" 
-							class="form_comment"/>
+						<p:inputTextarea id="comment" value="#{formSki.comment}"
+							class="form_comment" />
 						<br />
 					</h:panelGroup>
 				</h:panelGrid>
-		
+
 				<p:commandButton value="#{msg['form.save']}"
-					action="#{formSki.validate}"
-					update="formulaireSki"
-					rendered="#{formSki.edit==false}"
-					icon="ui-icon-disk">
+					action="#{formSki.validate}" update="formulaireSki"
+					rendered="#{formSki.edit==false}" icon="ui-icon-disk">
 				</p:commandButton>
-		
+
 				<p:commandButton value="#{msg['form.update']}"
-					action="#{formSki.save}" 
-					update="formulaireSki"
-					rendered="#{formSki.edit==true}"
-					icon="ui-icon-arrowrefresh-1-w">
+					action="#{formSki.save}" update="formulaireSki"
+					rendered="#{formSki.edit==true}" icon="ui-icon-arrowrefresh-1-w">
 				</p:commandButton>
-		
-		
+
+
 			</h:form>
 		</div>
 	</h:body>

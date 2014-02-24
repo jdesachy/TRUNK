@@ -8,7 +8,7 @@ import javax.faces.bean.ViewScoped;
 import db.Bean;
 import front.profile.db.Person;
 
-@ManagedBean
+@ManagedBean(name = "personBean")
 @ViewScoped
 public class PersonBean implements Serializable, Bean {
 
@@ -17,6 +17,9 @@ public class PersonBean implements Serializable, Bean {
 	private long id;
 	private String firstName;
 	private String lastName;
+
+	public PersonBean() {
+	}
 
 	public PersonBean(Person person) {
 		this.id = person.getId();
@@ -40,13 +43,25 @@ public class PersonBean implements Serializable, Bean {
 		this.lastName = lastName;
 	}
 
-	@Override
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public Person toDBObject() {
 		Person person = new Person();
 		person.setId(id);
 		person.setFirstName(firstName);
 		person.setLastName(lastName);
 		return person;
+	}
+
+	@Override
+	public String toString() {
+		return firstName + " " + lastName;
 	}
 
 }

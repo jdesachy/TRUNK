@@ -13,11 +13,11 @@
 
 			<ui:include src="/menu.xhtml" />
 
-			<h:form id="listProfile">
-				<p:growl id="messages" />
+			<h:form id="profileForm">
+				<p:growl id="gmessages" showDetail="true" />
 
-				<p:dataTable value="#{profileController.persons}" var="p"
-					id="tableProfile">
+				<p:dataTable id="profileListTable"
+					value="#{profileController.persons}" var="p">
 					<p:column>
 						<h:outputText value="#{p.firstName}" />
 					</p:column>
@@ -25,8 +25,9 @@
 						<h:outputText value="#{p.lastName}" />
 					</p:column>
 					<p:column>
-						<p:commandButton actionListener="#{profileController.delete}"
-							update="tableProfile" id="iconOnly" icon="ui-icon-disk">
+						<p:commandButton action="#{profileController.delete}"
+							update="profileListTable,@([id$=gmessages])"
+							title="#{msg['form.profile.delete']}" icon="ui-icon-close">
 							<f:setPropertyActionListener
 								target="#{profileController.personBean}" value="#{p}" />
 						</p:commandButton>

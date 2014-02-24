@@ -16,6 +16,10 @@
         <property name="comment" column="COMMENT"/>
         <property name="type" column="TYPE"/>
         
+        <set name="persons" table="PERSON_ACTIVITIES">
+        	<key column="ID_ACTIVITY"/>
+        	<many-to-many column="ID_PERSON" class="front.profile.db.Person"/>
+        </set>
     </class>
 
 

@@ -1,5 +1,6 @@
 package front.profile.db;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +8,9 @@ import db.DBObject;
 import db.DBQueryExecutor;
 import front.profile.PersonBean;
 
-public class ProfileDBDelegate {
+public class ProfileDBDelegate implements Serializable {
 
+	private static final long serialVersionUID = 7211026033988435976L;
 	private final DBQueryExecutor dbQueryExecutor = new DBQueryExecutor();
 
 	public void create(Person person) {
@@ -28,7 +30,8 @@ public class ProfileDBDelegate {
 		return newList;
 	}
 
-	public void delete(PersonBean personBean) {
-		dbQueryExecutor.delete(personBean);
+	public void delete(PersonBean person) {
+		dbQueryExecutor.delete(person);
 	}
+
 }

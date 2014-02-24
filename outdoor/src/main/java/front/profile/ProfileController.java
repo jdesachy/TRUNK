@@ -15,9 +15,11 @@ import front.profile.db.ProfileDBDelegate;
 public class ProfileController implements Serializable {
 
 	private static final long serialVersionUID = 5437755081676084416L;
-	private PersonBean personBean;
 	private final ProfileDBDelegate profileDBDelegate = new ProfileDBDelegate();
 
+	private PersonBean personBean;
+
+	private long idToRemove;
 	private List<PersonBean> persons;
 
 	public String createNew() {
@@ -35,10 +37,9 @@ public class ProfileController implements Serializable {
 
 	public String delete() {
 		profileDBDelegate.delete(personBean);
-		persons = profileDBDelegate.loadProfiles();
-		FacesMessage facesMessage = new FacesMessage(
-				FacesMessage.SEVERITY_INFO, "Profile supprimé", null);
-		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+		persons.remove(personBean);
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage("Info", "Profile supprimé : " + personBean));
 		return null;
 	}
 
@@ -56,5 +57,13 @@ public class ProfileController implements Serializable {
 
 	public void setPersons(List<PersonBean> persons) {
 		this.persons = persons;
+	}
+
+	public long getIdToRemove() {
+		return idToRemove;
+	}
+
+	public void setIdToRemove(long idToRemove) {
+		this.idToRemove = idToRemove;
 	}
 }

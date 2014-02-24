@@ -1,12 +1,15 @@
 package front.activity.db;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import db.DBObject;
+import front.profile.db.Person;
 
 @Table
 @Entity
@@ -20,6 +23,8 @@ public class Activity implements DBObject {
 	private int denivele;
 	private String comment;
 	private String type;
+
+	private Set<Person> persons = new HashSet<Person>();
 
 	public String getType() {
 		return type;
@@ -75,6 +80,14 @@ public class Activity implements DBObject {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public Set<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(Set<Person> persons) {
+		this.persons = persons;
 	}
 
 }

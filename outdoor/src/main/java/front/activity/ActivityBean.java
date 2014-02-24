@@ -89,7 +89,6 @@ public class ActivityBean implements Serializable, Bean {
 		this.type = activity.getType();
 	}
 
-	@Override
 	public Activity toDBObject() {
 		Activity activity = new Activity();
 		activity.setId(id);
