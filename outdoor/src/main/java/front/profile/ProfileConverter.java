@@ -15,7 +15,8 @@ public class ProfileConverter implements Converter {
 	}
 
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-		return String.valueOf(arg2);
+		PersonBean profile = (PersonBean) arg2;
+		return String.valueOf(profile.getId());
 	}
 
 }

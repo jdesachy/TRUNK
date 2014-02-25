@@ -3,17 +3,23 @@ package front.activity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import front.activity.db.ActivityDBDelegate;
+import front.activity.db.exception.DeleteActivityException;
 
 @ManagedBean(name = "activityControler")
 @SessionScoped
 public class ActivityControler implements Serializable {
 
 	private static final long serialVersionUID = -6035201373818263225L;
+
+	private final Logger log = Logger.getLogger(ActivityControler.class
+			.getName());
 
 	private final ActivityDBDelegate activityLoader = new ActivityDBDelegate();
 
@@ -27,8 +33,12 @@ public class ActivityControler implements Serializable {
 	}
 
 	public String delete() {
-		activitiesBean.remove(actionBean);
-		activityLoader.delete(actionBean);
+		try {
+			activityLoader.delete(actionBean);
+			activitiesBean.remove(actionBean);
+		} catch (DeleteActivityException e) {
+			log.log(Level.SEVERE, e.getLocalizedMessage());
+		}
 		return null;
 	}
 

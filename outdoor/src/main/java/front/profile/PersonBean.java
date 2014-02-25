@@ -64,4 +64,9 @@ public class PersonBean implements Serializable, Bean {
 		return firstName + " " + lastName;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof PersonBean && id == ((PersonBean) obj).id;
+	}
+
 }

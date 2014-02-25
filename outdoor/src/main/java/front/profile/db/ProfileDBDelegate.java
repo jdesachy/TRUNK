@@ -6,7 +6,9 @@ import java.util.List;
 
 import db.DBObject;
 import db.DBQueryExecutor;
+import db.exception.DeleteDataException;
 import front.profile.PersonBean;
+import front.profile.db.exception.DeleteProfileException;
 
 public class ProfileDBDelegate implements Serializable {
 
@@ -30,8 +32,12 @@ public class ProfileDBDelegate implements Serializable {
 		return newList;
 	}
 
-	public void delete(PersonBean person) {
-		dbQueryExecutor.delete(person);
+	public void delete(PersonBean person) throws DeleteProfileException {
+		try {
+			dbQueryExecutor.delete(person);
+		} catch (DeleteDataException e) {
+			throw new DeleteProfileException(person, e);
+		}
 	}
 
 }

@@ -5,23 +5,16 @@ import java.io.Serializable;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ComponentSystemEvent;
 
-import org.hibernate.Session;
-
-import Connection.HibernateUtil;
 import front.activity.ActivityBean;
-import front.activity.db.Activity;
 import front.activity.db.ActivityDBDelegate;
 import front.activity.db.ActivityType;
 import front.profile.PersonBean;
-import front.profile.db.Person;
 import front.profile.db.ProfileDBDelegate;
 
 @ManagedBean(name = "formSki")
@@ -38,7 +31,7 @@ public class FormSki implements Serializable {
 	private String massif;
 	private int traveledAltitude;
 	private long id;
-	private Set<PersonBean> selectedPersons;
+	private List<PersonBean> selectedPersons;
 	private List<PersonBean> listPersons;
 
 	private boolean edit;
@@ -50,47 +43,29 @@ public class FormSki implements Serializable {
 	}
 
 	public String validate() throws UnknownHostException, IOException {
-		createActivity();
+		activityDBDelegate.createActivity(createBean());
+		cleanForm();
 		return "success";
 	}
 
-	private void createActivity() {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		session.save(buildActivity());
-		session.getTransaction().commit();
-		clean();
+	private ActivityBean createBean() {
+		ActivityBean bean = new ActivityBean();
+		bean.setName(name);
+		bean.setDate(date);
+		bean.setDenivele(traveledAltitude);
+		bean.setMassif(massif);
+		bean.setComment(comment);
+		bean.setType(ActivityType.SKI.name());
+		bean.setPersons(selectedPersons);
+		return bean;
 	}
 
 	public String save() {
-		Activity updatedActivity = buildActivity();
-		updatedActivity.setId(id);
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		session.update(updatedActivity);
-		session.getTransaction().commit();
-		clean();
+		ActivityBean bean = createBean();
+		bean.setId(id);
+		activityDBDelegate.update(bean);
+		cleanForm();
 		return "success";
-	}
-
-	private Activity buildActivity() {
-		Activity activity = new Activity();
-		activity.setName(name);
-		activity.setDate(date);
-		activity.setDenivele(traveledAltitude);
-		activity.setMassif(massif);
-		activity.setComment(comment);
-		activity.setPersons(convertBean(selectedPersons));
-		activity.setType(ActivityType.SKI.name());
-		return activity;
-	}
-
-	private Set<Person> convertBean(Set<PersonBean> selectedPersons2) {
-		Set<Person> res = new HashSet<Person>();
-		for (PersonBean personBean : selectedPersons2) {
-			res.add(personBean.toDBObject());
-		}
-		return res;
 	}
 
 	public String getName() {
@@ -144,16 +119,18 @@ public class FormSki implements Serializable {
 		this.traveledAltitude = actionBean.getDenivele();
 		this.comment = actionBean.getComment();
 		this.massif = actionBean.getMassif();
+		this.selectedPersons = actionBean.getPersons();
 		return "edit";
 	}
 
-	private void clean() {
+	private void cleanForm() {
 		this.setEdit(false);
 		this.name = null;
 		this.date = null;
 		this.traveledAltitude = 0;
 		this.comment = null;
 		this.massif = null;
+		this.selectedPersons = null;
 	}
 
 	public boolean isEdit() {
@@ -180,11 +157,11 @@ public class FormSki implements Serializable {
 		this.actionBean = actionBean;
 	}
 
-	public Set<PersonBean> getSelectedPersons() {
+	public List<PersonBean> getSelectedPersons() {
 		return selectedPersons;
 	}
 
-	public void setSelectedPersons(Set<PersonBean> selectedPersons) {
+	public void setSelectedPersons(List<PersonBean> selectedPersons) {
 		this.selectedPersons = selectedPersons;
 	}
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import db.exception.DeleteDataException;
 import front.profile.db.Person;
 import Connection.HibernateUtil;
 
@@ -20,11 +21,16 @@ public class DBQueryExecutor implements Serializable {
 		return list;
 	}
 
-	public void delete(Bean beanToDelete) {
+	public void delete(Bean beanToDelete) throws DeleteDataException {
 		Session session = getSession();
-		session.beginTransaction();
-		session.delete(beanToDelete.toDBObject());
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			session.delete(beanToDelete.toDBObject());
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			throw new DeleteDataException(e);
+		}
 	}
 
 	public void insert(DBObject object) {
