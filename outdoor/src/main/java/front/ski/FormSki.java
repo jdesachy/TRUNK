@@ -6,6 +6,8 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -16,11 +18,13 @@ import front.activity.db.ActivityDBDelegate;
 import front.activity.db.ActivityType;
 import front.profile.PersonBean;
 import front.profile.db.ProfileDBDelegate;
+import front.profile.db.exception.ProfileLoaderException;
 
 @ManagedBean(name = "formSki")
 @SessionScoped
 public class FormSki implements Serializable {
 
+	private final Logger log = Logger.getLogger(FormSki.class.getName());
 	private static final long serialVersionUID = -7268492525793192133L;
 	private ActivityBean actionBean;
 
@@ -39,7 +43,11 @@ public class FormSki implements Serializable {
 	private final ActivityDBDelegate activityDBDelegate = new ActivityDBDelegate();
 
 	public void initProfiles(ComponentSystemEvent componentSystemEvent) {
-		listPersons = profileDBDelegate.loadProfiles();
+		try {
+			listPersons = profileDBDelegate.loadProfiles();
+		} catch (ProfileLoaderException e) {
+			log.log(Level.SEVERE, e.getMessage());
+		}
 	}
 
 	public String validate() throws UnknownHostException, IOException {
