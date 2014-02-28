@@ -10,7 +10,9 @@ import Connection.HibernateUtil;
 import db.DBObject;
 import db.DBQueryExecutor;
 import db.exception.DeleteDataException;
+import db.exception.ExecutionQueryException;
 import front.activity.ActivityBean;
+import front.activity.db.exception.ActivityLoaderException;
 import front.activity.db.exception.DeleteActivityException;
 
 public class ActivityDBDelegate implements Serializable {
@@ -25,9 +27,14 @@ public class ActivityDBDelegate implements Serializable {
 		session.getTransaction().commit();
 	}
 
-	public List<ActivityBean> loadAllActivity() {
-		List<DBObject> result = dbQueryExecutor
-				.executeQuery("select distinct a from Activity a left join fetch a.persons");
+	public List<ActivityBean> loadAllActivity() throws ActivityLoaderException {
+		List<DBObject> result = null;
+		try {
+			result = dbQueryExecutor
+					.executeQuery("select distinct a from Activity a left join fetch a.persons");
+		} catch (ExecutionQueryException e) {
+			throw new ActivityLoaderException();
+		}
 		return convertToBusinnesObject(result);
 	}
 

@@ -12,6 +12,8 @@ import javax.faces.context.FacesContext;
 
 import front.profile.db.ProfileDBDelegate;
 import front.profile.db.exception.DeleteProfileException;
+import front.profile.db.exception.ProfileInsertException;
+import front.profile.db.exception.ProfileLoaderException;
 
 @ManagedBean(name = "profileController")
 @SessionScoped
@@ -30,15 +32,28 @@ public class ProfileController implements Serializable {
 	private List<PersonBean> persons;
 
 	public String createNew() {
-		profileDBDelegate.create(personBean.toDBObject());
-		FacesMessage facesMessage = new FacesMessage(
-				FacesMessage.SEVERITY_INFO, "Profile ajouté", null);
-		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+		try {
+			profileDBDelegate.create(personBean.toDBObject());
+			FacesMessage facesMessage = new FacesMessage(
+					FacesMessage.SEVERITY_INFO, "Profile ajouté", null);
+			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+		} catch (ProfileInsertException e) {
+			FacesMessage facesMessage = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Profile non créé", null);
+			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+			log.log(Level.SEVERE, e.getMessage());
+			return "erreur";
+		}
 		return "success";
 	}
 
 	public String listAll() {
-		persons = profileDBDelegate.loadProfiles();
+		try {
+			persons = profileDBDelegate.loadProfiles();
+		} catch (ProfileLoaderException e) {
+			log.log(Level.SEVERE, e.getMessage());
+			return "erreur";
+		}
 		return "listProfiles";
 	}
 

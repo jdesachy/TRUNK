@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import front.activity.db.ActivityDBDelegate;
+import front.activity.db.exception.ActivityLoaderException;
 import front.activity.db.exception.DeleteActivityException;
 
 @ManagedBean(name = "activityControler")
@@ -28,7 +29,12 @@ public class ActivityControler implements Serializable {
 	private List<ActivityBean> activitiesBean = new ArrayList<ActivityBean>();
 
 	public String loadList() {
-		activitiesBean = activityLoader.loadAllActivity();
+		try {
+			activitiesBean = activityLoader.loadAllActivity();
+		} catch (ActivityLoaderException e) {
+			log.log(Level.SEVERE, e.getMessage());
+			return "erreur";
+		}
 		return "list";
 	}
 
