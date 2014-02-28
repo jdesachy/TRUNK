@@ -18,7 +18,13 @@
 			<h:form>
 				<p:dataTable id="listActivities"
 					value="#{activityControler.activitiesBean}" var="a" rows="20"
+					selection="#{activityControler.actionBean}" selectionMode="single"
 					paginator="true" sortBy="date" sortOrder="descending">
+
+					<p:ajax event="rowSelect"
+						listener="#{activityControler.showDetail}"
+						update="@([id$=showActivity])"  oncomplete="PF('activityDialog').show()"/>
+
 					<f:facet name="header">
 						<h:outputText value="#{msg['activities.title']}" />
 					</f:facet>
@@ -60,10 +66,9 @@
 						</f:facet>
 						<p:splitButton value="#{msg['activities.button.update']}">
 							<p:menuitem value="#{msg['activities.button.update']}"
-								action="#{formSki.update}"
-								icon="ui-icon-arrowrefresh-1-w">
-								<f:setPropertyActionListener
-									target="#{formSki.actionBean}" value="#{a}" />
+								action="#{formSki.update}" icon="ui-icon-arrowrefresh-1-w">
+								<f:setPropertyActionListener target="#{formSki.actionBean}"
+									value="#{a}" />
 							</p:menuitem>
 							<p:menuitem value="#{msg['activities.button.delete']}"
 								action="#{activityControler.delete}" update="listActivities"
@@ -81,6 +86,7 @@
 
 				</p:dataTable>
 
+				<ui:include src="/viewActivity.xhtml" />
 			</h:form>
 		</div>
 	</h:body>
