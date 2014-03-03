@@ -11,7 +11,30 @@
 </h:head>
 <h:body>
 	<p:dialog id="showActivity" widgetVar="activityDialog">
-		test popup
+		
+		<div  class="activityDetail">
+			<p:panelGrid columns="2">
+				<h:outputLabel value="#{msg['form.activity.name']}" class="detailTitle"/>
+				<h:outputLabel value="#{activityControler.actionBean.name}"/>
+
+				<h:outputLabel value="#{msg['form.activity.date']}" class="detailTitle"/>
+				<h:outputLabel value="#{activityControler.actionBean.date}"/>
+
+				<h:outputLabel value="#{msg['form.activity.massif']}" class="detailTitle"/>
+				<h:outputLabel value="#{activityControler.actionBean.massif}"/>
+
+				<h:outputLabel value="#{msg['form.activity.traveledAltitude']}" class="detailTitle"/>
+				<h:outputLabel value="#{activityControler.actionBean.denivele}"/>
+
+				<h:outputLabel value="#{msg['form.activity.profiles']}" class="detailTitle"/>
+				<p:dataList value="#{activityControler.actionBean.persons}" var="p">#{p}</p:dataList>
+
+				<h:outputLabel value="#{msg['form.activity.comment']}" class="detailTitle"/>
+				<h:outputLabel value="#{activityControler.actionBean.comment}"/>
+
+			</p:panelGrid>
+		</div>
+		
 	</p:dialog>
 </h:body>
 </html>

@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Session;
-
-import Connection.HibernateUtil;
 import db.DBObject;
 import db.DBQueryExecutor;
 import db.exception.DeleteDataException;

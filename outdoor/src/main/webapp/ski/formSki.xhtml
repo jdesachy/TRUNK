@@ -42,10 +42,11 @@
 						<h:outputText value="#{msg['form.activity.profiles']}" />
 					</h:panelGroup>
 					<h:panelGroup class="r">
-						<p:selectManyMenu class="selectProfiles"
+						<p:selectManyMenu
 							converter="ProfileConverter" showCheckbox="true"
 							value="#{formSki.selectedPersons}" filter="true"
-							filterText="Filter" filterMatchMode="startsWith">
+							filterText="Filter" filterMatchMode="startsWith" 
+							style="width: 200px; height: 60px;">
 
 							<f:selectItems value="#{formSki.listPersons}" var="#{person}" />
 						</p:selectManyMenu>

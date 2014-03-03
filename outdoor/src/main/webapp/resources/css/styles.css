@@ -76,3 +76,12 @@ body {
 	font-weight:bold;
 	color: #ff0000;
 }
+
+<!-- Detail activité -->
+.activityDetail{
+	width: 300px;
+}
+
+.detailTitle{
+	font-weight: bold;
+}

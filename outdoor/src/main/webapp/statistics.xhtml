@@ -15,10 +15,11 @@
 	<div id="welcomPage" class="page">
 		<ui:include src="/menu.xhtml" />
 		
-		<p:lineChart value="#{statisticController.linearModel}"
+		<p:barChart value="#{statisticController.linearModel}"
 			legendPosition="e" zoom="false" animate="false"
 			title="#{msg['stats.total']}" minY="0"
-			maxY="#{statisticController.maxTotal + 5000}"/>
+			maxY="#{statisticController.maxTotal + 5000}"
+			style="width: 200px;"/>
 	</div>
 
 </h:body>

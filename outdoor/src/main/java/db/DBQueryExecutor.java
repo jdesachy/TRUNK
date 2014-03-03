@@ -9,7 +9,6 @@ import db.exception.DeleteDataException;
 import db.exception.ExecutionQueryException;
 import db.exception.InsertDataException;
 import db.exception.UpdateDataException;
-import front.profile.db.Person;
 import Connection.HibernateUtil;
 
 public class DBQueryExecutor implements Serializable {

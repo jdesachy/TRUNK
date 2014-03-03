@@ -25,6 +25,7 @@ public class Activity implements DBObject {
 	private String type;
 
 	private Set<Person> persons = new HashSet<Person>();
+	private Set<String> pictures = new HashSet<String>();
 
 	public String getType() {
 		return type;
@@ -88,6 +89,14 @@ public class Activity implements DBObject {
 
 	public void setPersons(Set<Person> persons) {
 		this.persons = persons;
+	}
+
+	public Set<String> getPictures() {
+		return pictures;
+	}
+
+	public void setPictures(Set<String> pictures) {
+		this.pictures = pictures;
 	}
 
 }

@@ -29,16 +29,18 @@ public class ActivityBean implements Serializable, Bean {
 	private String comment;
 	private String type;
 	private List<PersonBean> persons;
+	private List<String> pictures;
 
 	public ActivityBean(Activity activity) {
-		this.id = activity.getId();
-		this.name = activity.getName();
-		this.date = activity.getDate();
-		this.massif = activity.getMassif();
-		this.denivele = activity.getDenivele();
-		this.comment = activity.getComment();
-		this.type = activity.getType();
-		this.persons = convertList(activity.getPersons());
+		id = activity.getId();
+		name = activity.getName();
+		date = activity.getDate();
+		massif = activity.getMassif();
+		denivele = activity.getDenivele();
+		comment = activity.getComment();
+		type = activity.getType();
+		persons = convertList(activity.getPersons());
+		pictures = new ArrayList<String>(activity.getPictures());
 	}
 
 	public ActivityBean() {
@@ -52,6 +54,7 @@ public class ActivityBean implements Serializable, Bean {
 		return res;
 	}
 
+	@Override
 	public Activity toDBObject() {
 		Activity activity = new Activity();
 		activity.setId(id);
@@ -62,6 +65,7 @@ public class ActivityBean implements Serializable, Bean {
 		activity.setComment(comment);
 		activity.setType(type);
 		activity.setPersons(convertSet());
+		activity.setPictures(new HashSet<String>(pictures));
 		return activity;
 	}
 
