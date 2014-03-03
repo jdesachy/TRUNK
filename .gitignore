@@ -1,0 +1,5 @@
+outdoor/target/
+outdoor/target/*
+*.class
+*.classpath
+*.factorypath
