@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import db.exception.DeleteDataException;
 import db.exception.ExecutionQueryException;
 import db.exception.InsertDataException;
+import db.exception.UpdateDataException;
 import front.profile.db.Person;
 import Connection.HibernateUtil;
 
@@ -58,6 +59,21 @@ public class DBQueryExecutor implements Serializable {
 		} catch (Exception e) {
 			rolleback(session);
 			throw new InsertDataException(e);
+		} finally {
+			close(session);
+		}
+	}
+
+	public void update(DBObject object) throws UpdateDataException {
+		Session session = null;
+		try {
+			session = getSession();
+			session.beginTransaction();
+			session.update(object);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			rolleback(session);
+			throw new UpdateDataException(object, e);
 		} finally {
 			close(session);
 		}

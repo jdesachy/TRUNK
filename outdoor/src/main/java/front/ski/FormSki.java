@@ -16,6 +16,8 @@ import javax.faces.event.ComponentSystemEvent;
 import front.activity.ActivityBean;
 import front.activity.db.ActivityDBDelegate;
 import front.activity.db.ActivityType;
+import front.activity.db.exception.ActivityInsertException;
+import front.activity.db.exception.ActivityUpdateException;
 import front.profile.PersonBean;
 import front.profile.db.ProfileDBDelegate;
 import front.profile.db.exception.ProfileLoaderException;
@@ -51,7 +53,12 @@ public class FormSki implements Serializable {
 	}
 
 	public String validate() throws UnknownHostException, IOException {
-		activityDBDelegate.createActivity(createBean());
+		try {
+			activityDBDelegate.createActivity(createBean());
+		} catch (ActivityInsertException e) {
+			log.log(Level.SEVERE, e.getMessage());
+			return "erreur";
+		}
 		cleanForm();
 		return "success";
 	}
@@ -71,7 +78,12 @@ public class FormSki implements Serializable {
 	public String save() {
 		ActivityBean bean = createBean();
 		bean.setId(id);
-		activityDBDelegate.update(bean);
+		try {
+			activityDBDelegate.update(bean);
+		} catch (ActivityUpdateException e) {
+			log.log(Level.SEVERE, e.getMessage());
+			return "erreur";
+		}
 		cleanForm();
 		return "success";
 	}
