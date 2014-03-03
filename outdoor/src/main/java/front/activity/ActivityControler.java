@@ -9,6 +9,9 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.primefaces.context.RequestContext;
+
+import front.ActivityDataModel;
 import front.activity.db.ActivityDBDelegate;
 import front.activity.db.exception.ActivityLoaderException;
 import front.activity.db.exception.DeleteActivityException;
@@ -26,11 +29,12 @@ public class ActivityControler implements Serializable {
 
 	private ActivityBean actionBean;
 
-	private List<ActivityBean> activitiesBean = new ArrayList<ActivityBean>();
+	private ActivityDataModel activitiesBean;
 
 	public String loadList() {
 		try {
-			activitiesBean = activityLoader.loadAllActivity();
+			activitiesBean = new ActivityDataModel(
+					activityLoader.loadAllActivity());
 		} catch (ActivityLoaderException e) {
 			log.log(Level.SEVERE, e.getMessage());
 			return "erreur";
@@ -41,14 +45,18 @@ public class ActivityControler implements Serializable {
 	public String delete() {
 		try {
 			activityLoader.delete(actionBean);
-			activitiesBean.remove(actionBean);
+//			activitiesBean.remove(actionBean);
 		} catch (DeleteActivityException e) {
 			log.log(Level.SEVERE, e.getLocalizedMessage());
 		}
 		return null;
 	}
 
-	public List<ActivityBean> getActivitiesBean() {
+	public void showDetail() {
+		RequestContext.getCurrentInstance().openDialog("viewActivity");
+	}
+
+	public ActivityDataModel getActivitiesBean() {
 		return activitiesBean;
 	}
 
@@ -61,7 +69,7 @@ public class ActivityControler implements Serializable {
 	}
 
 	public int getLength() {
-		return activitiesBean.size();
+		return activitiesBean.getRowCount();
 	}
 
 }
