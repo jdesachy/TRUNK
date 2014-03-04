@@ -6,7 +6,7 @@ import java.util.List;
 
 import front.activity.ActivityBean;
 
-public class StatisticBuilder  implements Serializable{
+public class StatisticBuilder implements Serializable {
 
 	private static final long serialVersionUID = 7035819998641155616L;
 	private final List<ActivityBean> statisticsBean;
@@ -17,8 +17,11 @@ public class StatisticBuilder  implements Serializable{
 
 	public int getTotalTraveled(Integer year) {
 		int result = 0;
+		Calendar minDate = getMinDate(year);
+		Calendar maxDate = getMaxDate(year);
+
 		for (ActivityBean bean : statisticsBean) {
-			if (isProcessing(year, bean)) {
+			if (isProcessing(minDate, maxDate, bean)) {
 				result += bean.getDenivele();
 			}
 		}
@@ -26,15 +29,26 @@ public class StatisticBuilder  implements Serializable{
 		return result;
 	}
 
-	private boolean isProcessing(Integer year, ActivityBean bean) {
-		return extractYear(bean) == year;
+	private Calendar getMaxDate(Integer year) {
+		Calendar maxDate = Calendar.getInstance();
+		maxDate.set(Calendar.YEAR, year);
+		maxDate.set(Calendar.MONTH, Calendar.AUGUST);
+		maxDate.set(Calendar.DAY_OF_MONTH, 1);
+		return maxDate;
 	}
 
-	private int extractYear(ActivityBean bean) {
-		Calendar curDate = Calendar.getInstance();
-		curDate.setTime(bean.getDate());
-		int curYear = curDate.get(Calendar.YEAR);
-		return curYear;
+	private Calendar getMinDate(Integer year) {
+		Calendar minDate = Calendar.getInstance();
+		minDate.set(Calendar.YEAR, year - 1);
+		minDate.set(Calendar.MONTH, Calendar.AUGUST);
+		minDate.set(Calendar.DAY_OF_MONTH, 1);
+		return minDate;
+	}
+
+	private boolean isProcessing(Calendar minDate, Calendar maxDate,
+			ActivityBean bean) {
+		return bean.getDate().compareTo(minDate.getTime()) > 0
+				&& bean.getDate().compareTo(maxDate.getTime()) < 0;
 	}
 
 }

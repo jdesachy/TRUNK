@@ -72,6 +72,14 @@ body {
 	width: 600px;
 }
 
+.jqplot-yaxis{
+	margin-right: 40px!important;
+}
+
+.jqplot-title {
+	top: -10px!important;
+}
+
 .error{ 
 	font-weight:bold;
 	color: #ff0000;

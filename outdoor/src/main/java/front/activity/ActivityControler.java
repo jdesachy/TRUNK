@@ -1,8 +1,6 @@
 package front.activity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,7 +43,7 @@ public class ActivityControler implements Serializable {
 	public String delete() {
 		try {
 			activityLoader.delete(actionBean);
-//			activitiesBean.remove(actionBean);
+			// activitiesBean.remove(actionBean);
 		} catch (DeleteActivityException e) {
 			log.log(Level.SEVERE, e.getLocalizedMessage());
 		}
