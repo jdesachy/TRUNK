@@ -1,6 +1,7 @@
 package front.activity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,7 +10,6 @@ import javax.faces.bean.SessionScoped;
 
 import org.primefaces.context.RequestContext;
 
-import front.ActivityDataModel;
 import front.activity.db.ActivityDBDelegate;
 import front.activity.db.exception.ActivityLoaderException;
 import front.activity.db.exception.DeleteActivityException;
@@ -26,13 +26,13 @@ public class ActivityControler implements Serializable {
 	private final ActivityDBDelegate activityLoader = new ActivityDBDelegate();
 
 	private ActivityBean actionBean;
+	private ActivityBean selectedBean;
 
-	private ActivityDataModel activitiesBean;
+	private List<ActivityBean> activitiesBean;
 
 	public String loadList() {
 		try {
-			activitiesBean = new ActivityDataModel(
-					activityLoader.loadAllActivity());
+			activitiesBean = activityLoader.loadAllActivity();
 		} catch (ActivityLoaderException e) {
 			log.log(Level.SEVERE, e.getMessage());
 			return "erreur";
@@ -43,7 +43,7 @@ public class ActivityControler implements Serializable {
 	public String delete() {
 		try {
 			activityLoader.delete(actionBean);
-			// activitiesBean.remove(actionBean);
+			activitiesBean.remove(actionBean);
 		} catch (DeleteActivityException e) {
 			log.log(Level.SEVERE, e.getLocalizedMessage());
 		}
@@ -52,10 +52,6 @@ public class ActivityControler implements Serializable {
 
 	public void showDetail() {
 		RequestContext.getCurrentInstance().openDialog("viewActivity");
-	}
-
-	public ActivityDataModel getActivitiesBean() {
-		return activitiesBean;
 	}
 
 	public ActivityBean getActionBean() {
@@ -67,7 +63,23 @@ public class ActivityControler implements Serializable {
 	}
 
 	public int getLength() {
-		return activitiesBean.getRowCount();
+		return activitiesBean.size();
+	}
+
+	public List<ActivityBean> getActivitiesBean() {
+		return activitiesBean;
+	}
+
+	public void setActivitiesBean(List<ActivityBean> activitiesBean) {
+		this.activitiesBean = activitiesBean;
+	}
+
+	public ActivityBean getSelectedBean() {
+		return selectedBean;
+	}
+
+	public void setSelectedBean(ActivityBean selectedBean) {
+		this.selectedBean = selectedBean;
 	}
 
 }

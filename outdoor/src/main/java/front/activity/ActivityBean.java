@@ -65,8 +65,18 @@ public class ActivityBean implements Serializable, Bean {
 		activity.setComment(comment);
 		activity.setType(type);
 		activity.setPersons(convertSet());
-		activity.setPictures(new HashSet<String>(pictures));
+		activity.setPictures(getPictures());
 		return activity;
+	}
+
+	private Set<String> getPictures() {
+		Set<String> set = null;
+		if (pictures != null) {
+			set = new HashSet<String>(pictures);
+		} else {
+			set = new HashSet<String>();
+		}
+		return set;
 	}
 
 	private Set<Person> convertSet() {
@@ -139,5 +149,9 @@ public class ActivityBean implements Serializable, Bean {
 
 	public void setPersons(List<PersonBean> persons) {
 		this.persons = persons;
+	}
+
+	public void setPictures(List<String> pictures) {
+		this.pictures = pictures;
 	}
 }

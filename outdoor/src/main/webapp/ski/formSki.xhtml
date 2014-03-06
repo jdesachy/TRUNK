@@ -4,7 +4,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <f:view locale="fr">
-	<f:event listener="#{formSki.initProfiles}" type="preRenderView" />
 	<h:head>
 		<title><h:outputText value="#{msg['welcome.topTitle']}" /></title>
 		<h:outputStylesheet library="css" name="styles.css" />
@@ -42,10 +41,9 @@
 						<h:outputText value="#{msg['form.activity.profiles']}" />
 					</h:panelGroup>
 					<h:panelGroup class="r">
-						<p:selectManyMenu
-							converter="ProfileConverter" showCheckbox="true"
+						<p:selectManyMenu converter="ProfileConverter" showCheckbox="true"
 							value="#{formSki.selectedPersons}" filter="true"
-							filterText="Filter" filterMatchMode="startsWith" 
+							filterText="Filter" filterMatchMode="startsWith"
 							style="width: 200px; height: 60px;">
 
 							<f:selectItems value="#{formSki.listPersons}" var="#{person}" />
@@ -84,6 +82,22 @@
 							class="form_comment" />
 						<br />
 					</h:panelGroup>
+
+					<h:panelGroup class="l">
+						<h:outputText value="#{msg['form.activity.pictures']}" />
+					</h:panelGroup>
+					<h:panelGroup class="r" id="picturesList">
+						<p:dataList value="#{formSki.listPictures}" var="pic">
+							#{pic}
+						</p:dataList>
+						<h:inputText value="#{formSki.newPitcure}" />
+
+						<p:commandButton id="pictureButton"
+							actionListener="#{formSki.addPicture}"
+							update=":formulaireSki:picturesList" icon="ui-icon-plus" />
+					</h:panelGroup>
+
+
 				</h:panelGrid>
 
 				<p:commandButton value="#{msg['form.save']}"

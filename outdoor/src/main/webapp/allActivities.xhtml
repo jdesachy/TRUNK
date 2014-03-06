@@ -18,12 +18,7 @@
 			<h:form>
 				<p:dataTable id="listActivities"
 					value="#{activityControler.activitiesBean}" var="a" rows="20"
-					selection="#{activityControler.actionBean}" selectionMode="single"
 					paginator="true" sortBy="date" sortOrder="descending">
-
-					<p:ajax event="rowSelect"
-						listener="#{activityControler.showDetail}"
-						update="@([id$=showActivity])"  oncomplete="PF('activityDialog').show()"/>
 
 					<f:facet name="header">
 						<h:outputText value="#{msg['activities.title']}" />
@@ -44,21 +39,16 @@
 					</p:column>
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="#{msg['activities.massif']}" />
-						</f:facet>
-						<h:outputText value="#{a.massif}" />
-					</p:column>
-					<p:column sortBy="denivele">
-						<f:facet name="header">
-							<h:outputText value="#{msg['activities.denivele']}" />
-						</f:facet>
-						<h:outputText value="#{a.denivele}" />
-					</p:column>
-					<p:column>
-						<f:facet name="header">
 							<h:outputText value="#{msg['activities.comment']}" />
 						</f:facet>
 						<h:outputText value="#{a.comment}" />
+					</p:column>
+					<p:column>
+						<p:commandButton update="@([id$=showActivity])"
+							icon="ui-icon-search" oncomplete="PF('activityDialog').show()">
+							<f:setPropertyActionListener value="#{a}"
+								target="#{activityControler.selectedBean}" />
+						</p:commandButton>
 					</p:column>
 					<p:column class="activity_action">
 						<f:facet name="header">
@@ -86,7 +76,33 @@
 
 				</p:dataTable>
 
-				<ui:include src="/viewActivity.xhtml" />
+				<p:dialog id="showActivity" class="activityDetail" widgetVar="activityDialog">
+					
+					<div>
+						<p:panelGrid columns="2">
+							<h:outputLabel value="#{msg['form.activity.name']}" class="detailTitle"/>
+							<h:outputLabel value="#{activityControler.selectedBean.name}"/>
+			
+							<h:outputLabel value="#{msg['form.activity.date']}" class="detailTitle"/>
+							<h:outputLabel value="#{activityControler.selectedBean.date}"/>
+			
+							<h:outputLabel value="#{msg['form.activity.massif']}" class="detailTitle"/>
+							<h:outputLabel value="#{activityControler.selectedBean.massif}"/>
+			
+							<h:outputLabel value="#{msg['form.activity.traveledAltitude']}" class="detailTitle"/>
+							<h:outputLabel value="#{activityControler.selectedBean.denivele}"/>
+			
+							<h:outputLabel value="#{msg['form.activity.profiles']}" class="detailTitle"/>
+							<p:dataList value="#{activityControler.selectedBean.persons}" var="p">#{p}</p:dataList>
+			
+							<h:outputLabel value="#{msg['form.activity.comment']}" class="detailTitle"/>
+							<h:outputLabel value="#{activityControler.selectedBean.comment}"/>
+			
+						</p:panelGrid>
+					</div>
+					
+				</p:dialog>
+
 			</h:form>
 		</div>
 	</h:body>

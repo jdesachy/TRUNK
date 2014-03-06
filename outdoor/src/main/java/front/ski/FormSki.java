@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ActionEvent;
 
 import front.activity.ActivityBean;
 import front.activity.db.ActivityDBDelegate;
@@ -39,17 +39,21 @@ public class FormSki implements Serializable {
 	private long id;
 	private List<PersonBean> selectedPersons;
 	private List<PersonBean> listPersons;
+	private List<String> listPictures = new ArrayList<String>();
+	private String newPitcure;
 
 	private boolean edit;
 	private final ProfileDBDelegate profileDBDelegate = new ProfileDBDelegate();
 	private final ActivityDBDelegate activityDBDelegate = new ActivityDBDelegate();
 
-	public void initProfiles(ComponentSystemEvent componentSystemEvent) {
+	public String editActivity() {
 		try {
 			listPersons = profileDBDelegate.loadProfiles();
 		} catch (ProfileLoaderException e) {
 			log.log(Level.SEVERE, e.getMessage());
+			return "erreur";
 		}
+		return "edit";
 	}
 
 	public String validate() throws UnknownHostException, IOException {
@@ -72,6 +76,7 @@ public class FormSki implements Serializable {
 		bean.setComment(comment);
 		bean.setType(ActivityType.SKI.name());
 		bean.setPersons(selectedPersons);
+		bean.setPictures(listPictures);
 		return bean;
 	}
 
@@ -86,6 +91,10 @@ public class FormSki implements Serializable {
 		}
 		cleanForm();
 		return "success";
+	}
+
+	public void addPicture(ActionEvent event) {
+		listPictures.add(newPitcure);
 	}
 
 	public String getName() {
@@ -133,24 +142,24 @@ public class FormSki implements Serializable {
 
 	public String update() {
 		this.setEdit(true);
-		this.id = actionBean.getId();
-		this.name = actionBean.getName();
-		this.date = actionBean.getDate();
-		this.traveledAltitude = actionBean.getDenivele();
-		this.comment = actionBean.getComment();
-		this.massif = actionBean.getMassif();
-		this.selectedPersons = actionBean.getPersons();
+		id = actionBean.getId();
+		name = actionBean.getName();
+		date = actionBean.getDate();
+		traveledAltitude = actionBean.getDenivele();
+		comment = actionBean.getComment();
+		massif = actionBean.getMassif();
+		selectedPersons = actionBean.getPersons();
 		return "edit";
 	}
 
 	private void cleanForm() {
 		this.setEdit(false);
-		this.name = null;
-		this.date = null;
-		this.traveledAltitude = 0;
-		this.comment = null;
-		this.massif = null;
-		this.selectedPersons = null;
+		name = null;
+		date = null;
+		traveledAltitude = 0;
+		comment = null;
+		massif = null;
+		selectedPersons = null;
 	}
 
 	public boolean isEdit() {
@@ -191,6 +200,22 @@ public class FormSki implements Serializable {
 
 	public void setListPersons(List<PersonBean> listPersons) {
 		this.listPersons = listPersons;
+	}
+
+	public List<String> getListPictures() {
+		return listPictures;
+	}
+
+	public void setListPictures(List<String> listPictures) {
+		this.listPictures = listPictures;
+	}
+
+	public String getNewPitcure() {
+		return newPitcure;
+	}
+
+	public void setNewPitcure(String newPitcure) {
+		this.newPitcure = newPitcure;
 	}
 
 }

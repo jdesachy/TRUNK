@@ -86,8 +86,8 @@ body {
 }
 
 <!-- Detail activité -->
-.activityDetail{
-	width: 300px;
+.ui-dialog{
+	width: 800px!important;
 }
 
 .detailTitle{
