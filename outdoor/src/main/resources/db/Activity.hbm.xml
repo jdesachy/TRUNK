@@ -21,7 +21,7 @@
         	<many-to-many column="ID_PERSON" class="front.profile.db.Person"/>
         </set>
         
-        <set name="pictures" table="PICTURES_ACTIVITIES">
+        <set name="pictures" table="PICTURES_ACTIVITY">
         	<key column="ID_ACTIVITY" />
         	<element type="string" column="URL" />
         </set>

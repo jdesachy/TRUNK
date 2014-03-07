@@ -65,11 +65,11 @@ public class ActivityBean implements Serializable, Bean {
 		activity.setComment(comment);
 		activity.setType(type);
 		activity.setPersons(convertSet());
-		activity.setPictures(getPictures());
+		activity.setPictures(setPictures());
 		return activity;
 	}
 
-	private Set<String> getPictures() {
+	private Set<String> setPictures() {
 		Set<String> set = null;
 		if (pictures != null) {
 			set = new HashSet<String>(pictures);
@@ -153,5 +153,9 @@ public class ActivityBean implements Serializable, Bean {
 
 	public void setPictures(List<String> pictures) {
 		this.pictures = pictures;
+	}
+
+	public List<String> getPictures() {
+		return pictures;
 	}
 }

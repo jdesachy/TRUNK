@@ -47,20 +47,21 @@ public class FormSki implements Serializable {
 	private final ActivityDBDelegate activityDBDelegate = new ActivityDBDelegate();
 
 	public String editActivity() {
+		String resultPage = "edit";
 		try {
 			listPersons = profileDBDelegate.loadProfiles();
 		} catch (ProfileLoaderException e) {
-			log.log(Level.SEVERE, e.getMessage());
-			return "erreur";
+			log.log(Level.SEVERE, e.getMessage(), e);
+			resultPage = "erreur";
 		}
-		return "edit";
+		return resultPage;
 	}
 
 	public String validate() throws UnknownHostException, IOException {
 		try {
 			activityDBDelegate.createActivity(createBean());
 		} catch (ActivityInsertException e) {
-			log.log(Level.SEVERE, e.getMessage());
+			log.log(Level.SEVERE, e.getMessage(), e);
 			return "erreur";
 		}
 		cleanForm();
@@ -86,7 +87,7 @@ public class FormSki implements Serializable {
 		try {
 			activityDBDelegate.update(bean);
 		} catch (ActivityUpdateException e) {
-			log.log(Level.SEVERE, e.getMessage());
+			log.log(Level.SEVERE, e.getMessage(), e);
 			return "erreur";
 		}
 		cleanForm();
@@ -95,6 +96,7 @@ public class FormSki implements Serializable {
 
 	public void addPicture(ActionEvent event) {
 		listPictures.add(newPitcure);
+		newPitcure = "";
 	}
 
 	public String getName() {
@@ -141,7 +143,15 @@ public class FormSki implements Serializable {
 	}
 
 	public String update() {
+		String resultPage = "edit";
 		this.setEdit(true);
+		try {
+			listPersons = profileDBDelegate.loadProfiles();
+		} catch (ProfileLoaderException e) {
+			log.log(Level.SEVERE, e.getMessage(), e);
+			resultPage = "erreur";
+		}
+
 		id = actionBean.getId();
 		name = actionBean.getName();
 		date = actionBean.getDate();
@@ -149,7 +159,8 @@ public class FormSki implements Serializable {
 		comment = actionBean.getComment();
 		massif = actionBean.getMassif();
 		selectedPersons = actionBean.getPersons();
-		return "edit";
+		listPictures = actionBean.getPictures();
+		return resultPage;
 	}
 
 	private void cleanForm() {
@@ -160,6 +171,7 @@ public class FormSki implements Serializable {
 		comment = null;
 		massif = null;
 		selectedPersons = null;
+		listPictures = null;
 	}
 
 	public boolean isEdit() {

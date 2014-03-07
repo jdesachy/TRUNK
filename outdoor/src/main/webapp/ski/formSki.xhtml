@@ -87,14 +87,18 @@
 						<h:outputText value="#{msg['form.activity.pictures']}" />
 					</h:panelGroup>
 					<h:panelGroup class="r" id="picturesList">
-						<p:dataList value="#{formSki.listPictures}" var="pic">
-							#{pic}
-						</p:dataList>
+						<p:dataGrid var="picture" value="#{formSki.listPictures}"
+							columns="3" rows="5" paginator="true">
+							<p:panel>
+								<p:graphicImage value="#{picture}" style="width: 200px;"/>
+							</p:panel>	
+						</p:dataGrid>
 						<h:inputText value="#{formSki.newPitcure}" />
 
 						<p:commandButton id="pictureButton"
 							actionListener="#{formSki.addPicture}"
-							update=":formulaireSki:picturesList" icon="ui-icon-plus" />
+							update=":formulaireSki:picturesList,formulaireSki"
+							icon="ui-icon-plus" />
 					</h:panelGroup>
 
 

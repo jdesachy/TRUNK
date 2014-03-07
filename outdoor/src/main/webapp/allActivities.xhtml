@@ -76,9 +76,9 @@
 
 				</p:dataTable>
 
-				<p:dialog id="showActivity" class="activityDetail" widgetVar="activityDialog">
+				<p:dialog id="showActivity" class="activityDetail" widgetVar="activityDialog" width="800px" height="600px" resizable="false">
 					
-					<div>
+					<p:scrollPanel style="width: 750px;" scrollMode="native">
 						<p:panelGrid columns="2">
 							<h:outputLabel value="#{msg['form.activity.name']}" class="detailTitle"/>
 							<h:outputLabel value="#{activityControler.selectedBean.name}"/>
@@ -99,7 +99,14 @@
 							<h:outputLabel value="#{activityControler.selectedBean.comment}"/>
 			
 						</p:panelGrid>
-					</div>
+						
+						<p:panelGrid columns="1"> 
+							<p:galleria id="contentGalleria" value="#{activityControler.selectedBean.pictures}" var="pic" panelWidth="600" panelHeight="600"  
+	           					frameWidth="48" frameHeight="65" showCaption="true">  
+								<p:graphicImage id="playerImage" value="#{pic}" title="#{pic}"/>
+							</p:galleria>
+						</p:panelGrid>
+					</p:scrollPanel>
 					
 				</p:dialog>
 
