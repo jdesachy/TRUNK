@@ -8,9 +8,10 @@
 <f:view locale="fr">
 	<h:head>
 		<title><h:outputText value="#{msg['welcome.topTitle']}" /></title>
-		<h:outputStylesheet library="css" name="styles.css" />
 	</h:head>
 	<h:body>
+		<h:outputStylesheet library="css" name="styles.css" />
+		
 		<div id="welcomPage" class="page">
 
 			<ui:include src="/menu.xhtml" />
@@ -76,9 +77,9 @@
 
 				</p:dataTable>
 
-				<p:dialog id="showActivity" class="activityDetail" widgetVar="activityDialog" width="800px" height="600px" resizable="false">
+				<p:dialog id="showActivity" class="activityDetail" widgetVar="activityDialog" resizable="false">
 					
-					<p:scrollPanel style="width: 750px;" scrollMode="native">
+					<p:scrollPanel class="scrollDetail" scrollMode="native">
 						<p:panelGrid columns="2">
 							<h:outputLabel value="#{msg['form.activity.name']}" class="detailTitle"/>
 							<h:outputLabel value="#{activityControler.selectedBean.name}"/>
@@ -100,10 +101,10 @@
 			
 						</p:panelGrid>
 						
-						<p:panelGrid columns="1"> 
-							<p:galleria id="contentGalleria" value="#{activityControler.selectedBean.pictures}" var="pic" panelWidth="600" panelHeight="600"  
-	           					frameWidth="48" frameHeight="65" showCaption="true">  
-								<p:graphicImage id="playerImage" value="#{pic}" title="#{pic}"/>
+						<p:panelGrid columns="1" class="picturesGallery" rendered="#{not empty activityControler.selectedBean.pictures}"> 
+							<p:galleria class="contentGalleria" value="#{activityControler.selectedBean.pictures}" var="pic" 
+								panelWidth="800" panelHeight="650">  
+								<p:graphicImage id="playerImage" value="#{pic}"/>
 							</p:galleria>
 						</p:panelGrid>
 					</p:scrollPanel>
@@ -113,5 +114,6 @@
 			</h:form>
 		</div>
 	</h:body>
+	
 </f:view>
 </html>
