@@ -25,6 +25,21 @@ body {
 .globalMenu{
 	margin-bottom: 40px;	
 }
+form#gpLangChange {
+    border:0px;
+    margin:0px;
+    padding:0px;
+}
+div#viewerDiv {
+    width:80%;
+    height:600px;
+    background-color:white;
+    background-image:url(http://api.ign.fr/geoportail/api/js/latest/theme/geoportal/img/loading.gif);
+    background-position:center center;
+    background-repeat:no-repeat;
+    margin: 0 auto;
+    margin-top: 20px;
+}
 
 .formValidation{
 	text-align: center;
@@ -85,30 +100,28 @@ body {
 	color: #ff0000;
 }
 
-<!-- Detail activité -->
+<!-- Detail activitŽ -->
 .ui-scrollpanel-content{
 	padding: 10px!important;
 }
 .activityDetail{
-	width: 90%!important;
+	min-width: 400px;
+	max-width: 800px;
+	width: auto;
+	min-height: 400px;
+	max-height: 750px;
 	height: auto;
 }
 .scrollDetail{
 	width: 100%;
-	height: 700px;
+	min-height: 300px;
+	max-height: 750px;
+	height: auto;
 	padding: 10px;
 }
 .detailTitle{
 	font-weight: bold;
 }
-.contentGalleria{
+.pictureList{
 	margin: 0 auto;
-}
-.picturesGallery{
-	width: 100%;
-	margin-top: 40px;
-	text-align: center;
-}
-.ui-galleria-panel-wrapper{
-	width: 100%!important;
 }

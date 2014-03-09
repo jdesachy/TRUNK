@@ -37,7 +37,7 @@ public class ActivityDBDelegate implements Serializable {
 			result = dbQueryExecutor
 					.executeQuery("select distinct a from Activity a left join fetch a.persons left join fetch a.pictures");
 		} catch (ExecutionQueryException e) {
-			throw new ActivityLoaderException();
+			throw new ActivityLoaderException(e);
 		}
 		return convertToBusinnesObject(result);
 	}

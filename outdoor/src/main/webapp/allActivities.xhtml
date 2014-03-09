@@ -100,13 +100,14 @@
 							<h:outputLabel value="#{activityControler.selectedBean.comment}"/>
 			
 						</p:panelGrid>
-						
-						<p:panelGrid columns="1" class="picturesGallery" rendered="#{not empty activityControler.selectedBean.pictures}"> 
-							<p:galleria class="contentGalleria" value="#{activityControler.selectedBean.pictures}" var="pic" 
-								panelWidth="800" panelHeight="650">  
-								<p:graphicImage id="playerImage" value="#{pic}"/>
-							</p:galleria>
-						</p:panelGrid>
+
+						<p:dataGrid var="picture" value="#{activityControler.selectedBean.pictures}"
+							rendered="#{not empty activityControler.selectedBean.pictures}"
+							columns="3" rows="5" paginator="true">
+							<p:panel>
+								<p:graphicImage value="#{picture}" style="width: 200px;" class="pictureList"/>
+							</p:panel>	
+						</p:dataGrid>
 					</p:scrollPanel>
 					
 				</p:dialog>

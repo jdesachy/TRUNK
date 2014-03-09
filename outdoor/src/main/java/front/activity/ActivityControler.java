@@ -34,7 +34,7 @@ public class ActivityControler implements Serializable {
 		try {
 			activitiesBean = activityLoader.loadAllActivity();
 		} catch (ActivityLoaderException e) {
-			log.log(Level.SEVERE, e.getMessage());
+			log.log(Level.SEVERE, e.getMessage(), e);
 			return "erreur";
 		}
 		return "list";

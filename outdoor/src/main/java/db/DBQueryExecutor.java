@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import Connection.HibernateUtil;
 import db.exception.DeleteDataException;
 import db.exception.ExecutionQueryException;
 import db.exception.InsertDataException;
 import db.exception.UpdateDataException;
-import Connection.HibernateUtil;
 
 public class DBQueryExecutor implements Serializable {
 
@@ -73,6 +73,20 @@ public class DBQueryExecutor implements Serializable {
 		} catch (Exception e) {
 			rolleback(session);
 			throw new UpdateDataException(object, e);
+		} finally {
+			close(session);
+		}
+	}
+
+	public void initConnection() throws ExecutionQueryException {
+		Session session = null;
+		try {
+			session = getSession();
+			session.beginTransaction();
+			rolleback(session);
+		} catch (Exception e) {
+			rolleback(session);
+			throw new ExecutionQueryException(e);
 		} finally {
 			close(session);
 		}
