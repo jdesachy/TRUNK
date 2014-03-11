@@ -25,6 +25,7 @@ public class Activity implements DBObject {
 	private int denivele;
 	private String comment;
 	private String type;
+	private String gpx;
 
 	private Set<Person> persons = new HashSet<Person>();
 
@@ -101,6 +102,14 @@ public class Activity implements DBObject {
 
 	public void setPictures(Set<String> pictures) {
 		this.pictures = pictures;
+	}
+
+	public String getGpx() {
+		return gpx;
+	}
+
+	public void setGpx(String gpx) {
+		this.gpx = gpx;
 	}
 
 }

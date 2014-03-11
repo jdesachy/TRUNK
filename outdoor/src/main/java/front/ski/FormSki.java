@@ -37,6 +37,7 @@ public class FormSki implements Serializable {
 	private String massif;
 	private int traveledAltitude;
 	private long id;
+	private String gpxUrl;
 	private List<PersonBean> selectedPersons;
 	private List<PersonBean> listPersons;
 	private List<String> listPictures = new ArrayList<String>();
@@ -75,6 +76,7 @@ public class FormSki implements Serializable {
 		bean.setDenivele(traveledAltitude);
 		bean.setMassif(massif);
 		bean.setComment(comment);
+		bean.setGpxUrl(gpxUrl);
 		bean.setType(ActivityType.SKI.name());
 		bean.setPersons(selectedPersons);
 		bean.setPictures(listPictures);
@@ -158,6 +160,7 @@ public class FormSki implements Serializable {
 		traveledAltitude = actionBean.getDenivele();
 		comment = actionBean.getComment();
 		massif = actionBean.getMassif();
+		gpxUrl = actionBean.getGpxUrl();
 		selectedPersons = actionBean.getPersons();
 		listPictures = actionBean.getPictures();
 		return resultPage;
@@ -172,6 +175,7 @@ public class FormSki implements Serializable {
 		massif = null;
 		selectedPersons = null;
 		listPictures = null;
+		gpxUrl = null;
 	}
 
 	public boolean isEdit() {
@@ -228,6 +232,14 @@ public class FormSki implements Serializable {
 
 	public void setNewPitcure(String newPitcure) {
 		this.newPitcure = newPitcure;
+	}
+
+	public String getGpxUrl() {
+		return gpxUrl;
+	}
+
+	public void setGpxUrl(String gpxUrl) {
+		this.gpxUrl = gpxUrl;
 	}
 
 }

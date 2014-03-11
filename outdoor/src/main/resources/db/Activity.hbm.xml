@@ -15,6 +15,7 @@
         <property name="denivele" column="DENIVELE"/>
         <property name="comment" column="COMMENT"/>
         <property name="type" column="TYPE"/>
+        <property name="gpx" column="GPX"/>
         
         <set name="persons" table="PERSON_ACTIVITIES">
         	<key column="ID_ACTIVITY"/>

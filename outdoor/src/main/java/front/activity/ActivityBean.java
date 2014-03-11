@@ -28,6 +28,7 @@ public class ActivityBean implements Serializable, Bean {
 	private int denivele;
 	private String comment;
 	private String type;
+	private String gpxUrl;
 	private List<PersonBean> persons;
 	private List<String> pictures;
 
@@ -39,6 +40,7 @@ public class ActivityBean implements Serializable, Bean {
 		denivele = activity.getDenivele();
 		comment = activity.getComment();
 		type = activity.getType();
+		gpxUrl = activity.getGpx();
 		persons = convertList(activity.getPersons());
 		pictures = new ArrayList<String>(activity.getPictures());
 	}
@@ -64,6 +66,7 @@ public class ActivityBean implements Serializable, Bean {
 		activity.setDenivele(denivele);
 		activity.setComment(comment);
 		activity.setType(type);
+		activity.setGpx(gpxUrl);
 		activity.setPersons(convertSet());
 		activity.setPictures(setPictures());
 		return activity;
@@ -157,5 +160,13 @@ public class ActivityBean implements Serializable, Bean {
 
 	public List<String> getPictures() {
 		return pictures;
+	}
+
+	public String getGpxUrl() {
+		return gpxUrl;
+	}
+
+	public void setGpxUrl(String gpxUrl) {
+		this.gpxUrl = gpxUrl;
 	}
 }
