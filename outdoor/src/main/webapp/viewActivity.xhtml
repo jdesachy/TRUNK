@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+	<ui:composition>
+		<p:scrollPanel id="activityScroll" class="scrollDetail" scrollMode="native">
+			<p:tabView id="activityTab">
+
+				<!-- Detail de l'activite -->
+				<p:tab id="tab1" title="#{msg['activity.title']}">
+					<p:panelGrid columns="2">
+						<h:outputLabel value="#{msg['form.activity.name']}"
+							class="detailTitle" />
+						<h:outputLabel value="#{activityControler.selectedBean.name}" />
+
+						<h:outputLabel value="#{msg['form.activity.date']}"
+							class="detailTitle" />
+						<h:outputLabel value="#{activityControler.selectedBean.date}" />
+
+						<h:outputLabel value="#{msg['form.activity.massif']}"
+							class="detailTitle" />
+						<h:outputLabel value="#{activityControler.selectedBean.massif}" />
+
+						<h:outputLabel value="#{msg['form.activity.traveledAltitude']}"
+							class="detailTitle" />
+						<h:outputLabel value="#{activityControler.selectedBean.denivele}" />
+
+						<h:outputLabel value="#{msg['form.activity.profiles']}"
+							class="detailTitle" />
+						<p:dataList value="#{activityControler.selectedBean.persons}"
+							var="p">#{p}</p:dataList>
+
+						<h:outputLabel value="#{msg['form.activity.comment']}"
+							class="detailTitle" />
+						<h:outputLabel value="#{activityControler.selectedBean.comment}" />
+					</p:panelGrid>
+				</p:tab>
+
+				<!-- Affichage des photos -->
+				<p:tab id="tab2" title="#{msg['activity.pictures']}">
+					<p:panelGrid columns="2">
+						Contenu à venir
+					</p:panelGrid>
+				</p:tab>
+
+			</p:tabView>
+
+		</p:scrollPanel>
+
+	</ui:composition>
+</h:body>
+</html>

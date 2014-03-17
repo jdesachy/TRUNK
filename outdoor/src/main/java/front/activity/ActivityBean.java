@@ -42,7 +42,6 @@ public class ActivityBean implements Serializable, Bean {
 		type = activity.getType();
 		gpxUrl = activity.getGpx();
 		persons = convertList(activity.getPersons());
-		pictures = new ArrayList<String>(activity.getPictures());
 	}
 
 	public ActivityBean() {
@@ -68,18 +67,7 @@ public class ActivityBean implements Serializable, Bean {
 		activity.setType(type);
 		activity.setGpx(gpxUrl);
 		activity.setPersons(convertSet());
-		activity.setPictures(setPictures());
 		return activity;
-	}
-
-	private Set<String> setPictures() {
-		Set<String> set = null;
-		if (pictures != null) {
-			set = new HashSet<String>(pictures);
-		} else {
-			set = new HashSet<String>();
-		}
-		return set;
 	}
 
 	private Set<Person> convertSet() {

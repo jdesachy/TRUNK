@@ -5,9 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import db.DBObject;
@@ -28,9 +26,6 @@ public class Activity implements DBObject {
 	private String gpx;
 
 	private Set<Person> persons = new HashSet<Person>();
-
-	@OneToMany(fetch = FetchType.EAGER)
-	private Set<String> pictures = new HashSet<String>();
 
 	public String getType() {
 		return type;
@@ -94,14 +89,6 @@ public class Activity implements DBObject {
 
 	public void setPersons(Set<Person> persons) {
 		this.persons = persons;
-	}
-
-	public Set<String> getPictures() {
-		return pictures;
-	}
-
-	public void setPictures(Set<String> pictures) {
-		this.pictures = pictures;
 	}
 
 	public String getGpx() {
