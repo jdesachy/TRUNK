@@ -7,37 +7,38 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:body>
 	<ui:composition>
-		<p:scrollPanel id="activityScroll" class="scrollDetail" scrollMode="native">
 			<p:tabView id="activityTab">
 
 				<!-- Detail de l'activite -->
 				<p:tab id="tab1" title="#{msg['activity.title']}">
-					<p:panelGrid columns="2">
-						<h:outputLabel value="#{msg['form.activity.name']}"
-							class="detailTitle" />
-						<h:outputLabel value="#{activityControler.selectedBean.name}" />
-
-						<h:outputLabel value="#{msg['form.activity.date']}"
-							class="detailTitle" />
-						<h:outputLabel value="#{activityControler.selectedBean.date}" />
-
-						<h:outputLabel value="#{msg['form.activity.massif']}"
-							class="detailTitle" />
-						<h:outputLabel value="#{activityControler.selectedBean.massif}" />
-
-						<h:outputLabel value="#{msg['form.activity.traveledAltitude']}"
-							class="detailTitle" />
-						<h:outputLabel value="#{activityControler.selectedBean.denivele}" />
-
-						<h:outputLabel value="#{msg['form.activity.profiles']}"
-							class="detailTitle" />
-						<p:dataList value="#{activityControler.selectedBean.persons}"
-							var="p">#{p}</p:dataList>
-
-						<h:outputLabel value="#{msg['form.activity.comment']}"
-							class="detailTitle" />
-						<h:outputLabel value="#{activityControler.selectedBean.comment}" />
-					</p:panelGrid>
+					<p:scrollPanel id="activityScroll" class="scrollDetail" scrollMode="native">
+						<p:panelGrid columns="2">
+							<h:outputLabel value="#{msg['form.activity.name']}"
+								class="detailTitle" />
+							<h:outputLabel value="#{activityControler.selectedBean.name}" />
+	
+							<h:outputLabel value="#{msg['form.activity.date']}"
+								class="detailTitle" />
+							<h:outputLabel value="#{activityControler.selectedBean.date}" />
+	
+							<h:outputLabel value="#{msg['form.activity.massif']}"
+								class="detailTitle" />
+							<h:outputLabel value="#{activityControler.selectedBean.massif}" />
+	
+							<h:outputLabel value="#{msg['form.activity.traveledAltitude']}"
+								class="detailTitle" />
+							<h:outputLabel value="#{activityControler.selectedBean.denivele}" />
+	
+							<h:outputLabel value="#{msg['form.activity.profiles']}"
+								class="detailTitle" />
+							<p:dataList value="#{activityControler.selectedBean.persons}"
+								var="p">#{p}</p:dataList>
+	
+							<h:outputLabel value="#{msg['form.activity.comment']}"
+								class="detailTitle" />
+							<h:outputLabel value="#{activityControler.selectedBean.comment}" />
+						</p:panelGrid>
+					</p:scrollPanel>
 				</p:tab>
 
 				<!-- Affichage des photos -->
@@ -49,7 +50,6 @@
 
 			</p:tabView>
 
-		</p:scrollPanel>
 
 	</ui:composition>
 </h:body>
