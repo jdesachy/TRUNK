@@ -29,6 +29,8 @@ public class ActivityBean implements Serializable, Bean {
 	private String comment;
 	private String type;
 	private String gpxUrl;
+	private String album;
+
 	private List<PersonBean> persons;
 	private List<String> pictures;
 
@@ -41,6 +43,7 @@ public class ActivityBean implements Serializable, Bean {
 		comment = activity.getComment();
 		type = activity.getType();
 		gpxUrl = activity.getGpx();
+		album = activity.getAlbum();
 		persons = convertList(activity.getPersons());
 	}
 
@@ -66,6 +69,7 @@ public class ActivityBean implements Serializable, Bean {
 		activity.setComment(comment);
 		activity.setType(type);
 		activity.setGpx(gpxUrl);
+		activity.setAlbum(album);
 		activity.setPersons(convertSet());
 		return activity;
 	}
@@ -157,4 +161,13 @@ public class ActivityBean implements Serializable, Bean {
 	public void setGpxUrl(String gpxUrl) {
 		this.gpxUrl = gpxUrl;
 	}
+
+	public String getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(String album) {
+		this.album = album;
+	}
+
 }

@@ -7,10 +7,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:body>
 	<ui:composition>
+	
 			<p:tabView id="activityTab">
 
 				<!-- Detail de l'activite -->
-				<p:tab id="tab1" title="#{msg['activity.title']}">
+				<p:tab id="tabDescActivity" title="#{msg['activity.title']}">
 					<p:scrollPanel id="activityScroll" class="scrollDetail" scrollMode="native">
 						<p:panelGrid columns="2">
 							<h:outputLabel value="#{msg['form.activity.name']}"
@@ -42,14 +43,24 @@
 				</p:tab>
 
 				<!-- Affichage des photos -->
-				<p:tab id="tab2" title="#{msg['activity.pictures']}">
-					<p:panelGrid columns="2">
-						Contenu à venir
-					</p:panelGrid>
+				<p:tab id="tabAlbum" title="#{msg['activity.pictures']}">
+				
+					<p:scrollPanel id="activityScrollAlbum" class="scrollDetail" scrollMode="native">
+						<div id="container"></div>
+					</p:scrollPanel>
+
+					<script type="text/javascript">
+					$(document).ready(function() {
+					    $("#container").pwi({
+					        username: '101100397802535634623',
+					        mode: 'album',
+					        album: '#{activityControler.selectedBean.album}'
+					    });
+					});
+					</script>
 				</p:tab>
 
 			</p:tabView>
-
 
 	</ui:composition>
 </h:body>

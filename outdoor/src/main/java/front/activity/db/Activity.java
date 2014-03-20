@@ -24,6 +24,7 @@ public class Activity implements DBObject {
 	private String comment;
 	private String type;
 	private String gpx;
+	private String album;
 
 	private Set<Person> persons = new HashSet<Person>();
 
@@ -97,6 +98,14 @@ public class Activity implements DBObject {
 
 	public void setGpx(String gpx) {
 		this.gpx = gpx;
+	}
+
+	public String getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(String album) {
+		this.album = album;
 	}
 
 }

@@ -16,6 +16,7 @@
         <property name="comment" column="COMMENT"/>
         <property name="type" column="TYPE"/>
         <property name="gpx" column="GPX"/>
+        <property name="album" column="ALBUM"/>
         
         <set name="persons" table="PERSON_ACTIVITIES">
         	<key column="ID_ACTIVITY"/>

@@ -84,6 +84,14 @@
 					</h:panelGroup>
 
 					<h:panelGroup class="l">
+						<h:outputText value="#{msg['form.activity.album']}" />
+					</h:panelGroup>
+					<h:panelGroup class="r">
+						<p:inputText id="picasaAlbum" value="#{formSki.album}" />
+						<br />
+					</h:panelGroup>
+
+					<h:panelGroup class="l">
 						<h:outputText value="#{msg['form.activity.gpx']}" />
 					</h:panelGroup>
 					<h:panelGroup class="r">
@@ -102,7 +110,6 @@
 					action="#{formSki.save}" update="formulaireSki"
 					rendered="#{formSki.edit==true}" icon="ui-icon-arrowrefresh-1-w">
 				</p:commandButton>
-
 
 			</h:form>
 		</div>
