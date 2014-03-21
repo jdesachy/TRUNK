@@ -15,16 +15,14 @@
         <property name="denivele" column="DENIVELE"/>
         <property name="comment" column="COMMENT"/>
         <property name="type" column="TYPE"/>
+        <property name="gpx" column="GPX"/>
+        <property name="album" column="ALBUM"/>
         
         <set name="persons" table="PERSON_ACTIVITIES">
         	<key column="ID_ACTIVITY"/>
         	<many-to-many column="ID_PERSON" class="front.profile.db.Person"/>
         </set>
         
-        <set name="pictures" table="PICTURES_ACTIVITY">
-        	<key column="ID_ACTIVITY" />
-        	<element type="string" column="URL" />
-        </set>
     </class>
 
 

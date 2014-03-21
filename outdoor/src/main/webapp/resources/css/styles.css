@@ -122,6 +122,6 @@ div#viewerDiv {
 .detailTitle{
 	font-weight: bold;
 }
-.pictureList{
-	margin: 0 auto;
+#tabAlbum{
+	height : 400px;
 }

@@ -11,23 +11,22 @@
 				icon="ui-icon-extlink" />
 			<p:menuitem value="#{msg['activities.title']}"
 				action="#{activityControler.loadList}" icon="ui-icon-star" />
-			<p:menuitem value="#{msg['welcome.title1']}" action="#{formSki.editActivity}"
-				icon="ui-icon-pencil" />
+			<p:menuitem value="#{msg['welcome.title1']}"
+				action="#{formSki.editActivity}" icon="ui-icon-pencil" />
 			<p:menuitem value="#{msg['welcome.title2']}"
 				action="#{statisticController.loadStatistics}" icon="ui-icon-search" />
 			<p:submenu label="#{msg['welcome.title3']}" icon="ui-icon-gear">
 				<p:column>
 					<p:submenu>
 						<p:menuitem value="#{msg['welcome.title3sub1']}"
-							action="newProfile"
-							icon="ui-icon-person" />
+							action="newProfile" icon="ui-icon-person" />
 						<p:menuitem value="#{msg['welcome.title3sub2']}"
-							action="#{profileController.listAll}"
-							icon="ui-icon-person" />
+							action="#{profileController.listAll}" icon="ui-icon-person" />
 					</p:submenu>
 				</p:column>
 			</p:submenu>
 
 		</p:megaMenu>
+
 	</h:form>
 </ui:composition>

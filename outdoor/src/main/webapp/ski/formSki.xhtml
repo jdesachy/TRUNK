@@ -84,23 +84,20 @@
 					</h:panelGroup>
 
 					<h:panelGroup class="l">
-						<h:outputText value="#{msg['form.activity.pictures']}" />
+						<h:outputText value="#{msg['form.activity.album']}" />
 					</h:panelGroup>
-					<h:panelGroup class="r" id="picturesList">
-						<p:dataGrid var="picture" value="#{formSki.listPictures}"
-							columns="3" rows="5" paginator="true">
-							<p:panel>
-								<p:graphicImage value="#{picture}" style="width: 200px;"/>
-							</p:panel>	
-						</p:dataGrid>
-						<h:inputText value="#{formSki.newPitcure}" />
-
-						<p:commandButton id="pictureButton"
-							actionListener="#{formSki.addPicture}"
-							update=":formulaireSki:picturesList,formulaireSki"
-							icon="ui-icon-plus" />
+					<h:panelGroup class="r">
+						<p:inputText id="picasaAlbum" value="#{formSki.album}" />
+						<br />
 					</h:panelGroup>
 
+					<h:panelGroup class="l">
+						<h:outputText value="#{msg['form.activity.gpx']}" />
+					</h:panelGroup>
+					<h:panelGroup class="r">
+						<p:inputText id="gpxFile" value="#{formSki.gpxUrl}" />
+						<br />
+					</h:panelGroup>
 
 				</h:panelGrid>
 
@@ -113,7 +110,6 @@
 					action="#{formSki.save}" update="formulaireSki"
 					rendered="#{formSki.edit==true}" icon="ui-icon-arrowrefresh-1-w">
 				</p:commandButton>
-
 
 			</h:form>
 		</div>

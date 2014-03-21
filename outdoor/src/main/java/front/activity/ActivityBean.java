@@ -28,6 +28,9 @@ public class ActivityBean implements Serializable, Bean {
 	private int denivele;
 	private String comment;
 	private String type;
+	private String gpxUrl;
+	private String album;
+
 	private List<PersonBean> persons;
 	private List<String> pictures;
 
@@ -39,8 +42,9 @@ public class ActivityBean implements Serializable, Bean {
 		denivele = activity.getDenivele();
 		comment = activity.getComment();
 		type = activity.getType();
+		gpxUrl = activity.getGpx();
+		album = activity.getAlbum();
 		persons = convertList(activity.getPersons());
-		pictures = new ArrayList<String>(activity.getPictures());
 	}
 
 	public ActivityBean() {
@@ -64,19 +68,10 @@ public class ActivityBean implements Serializable, Bean {
 		activity.setDenivele(denivele);
 		activity.setComment(comment);
 		activity.setType(type);
+		activity.setGpx(gpxUrl);
+		activity.setAlbum(album);
 		activity.setPersons(convertSet());
-		activity.setPictures(setPictures());
 		return activity;
-	}
-
-	private Set<String> setPictures() {
-		Set<String> set = null;
-		if (pictures != null) {
-			set = new HashSet<String>(pictures);
-		} else {
-			set = new HashSet<String>();
-		}
-		return set;
 	}
 
 	private Set<Person> convertSet() {
@@ -158,4 +153,21 @@ public class ActivityBean implements Serializable, Bean {
 	public List<String> getPictures() {
 		return pictures;
 	}
+
+	public String getGpxUrl() {
+		return gpxUrl;
+	}
+
+	public void setGpxUrl(String gpxUrl) {
+		this.gpxUrl = gpxUrl;
+	}
+
+	public String getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(String album) {
+		this.album = album;
+	}
+
 }

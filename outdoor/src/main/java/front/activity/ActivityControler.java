@@ -37,7 +37,7 @@ public class ActivityControler implements Serializable {
 			log.log(Level.SEVERE, e.getMessage(), e);
 			return "erreur";
 		}
-		return "list";
+		return "/allActivities.xhtml";
 	}
 
 	public String delete() {
