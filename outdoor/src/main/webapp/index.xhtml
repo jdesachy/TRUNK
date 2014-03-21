@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version='1.0' encoding='ISO-8859-1' ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -9,6 +9,8 @@
 	<h:head>
 		<title><h:outputText value="#{msg['welcome.topTitle']}" /></title>
 		<h:outputStylesheet library="css" name="styles.css" />
+		<script type="text/javascript" src="http://api.ign.fr/geoportail/api/js/latest/Geoportal.js"><!-- --></script>
+		
 	</h:head>
 	<h:body>
 
@@ -16,7 +18,56 @@
 			<ui:include src="/menu.xhtml" />
 
 			Bienvenue sur mon site !
-			
+
+			<div id="viewerDiv"></div>
+    <script type="text/javascript"><!--//--><![CDATA[//><!--
+    var iv= null;
+
+    /**
+     * Function: changeRenderIntent
+     * Toggle rendering for selected features.
+     *
+     * Parameters:
+     * o - {<OpenLayers.Feature.Vector>}
+     */
+    function changeRenderIntent (o) {
+        if (o && o.feature) {
+            o.feature.renderIntent= o.feature.renderIntent=="default"?
+                "select"
+            :   "default";
+        }
+    }
+
+    window.onload= function() {
+        iv= Geoportal.load(
+            // div's ID:
+            'viewerDiv',
+            // API's keys:
+            ['#{ignKey.value}'],
+            {// map's center :
+                // longitude:
+                lon:6.106732,
+                // latitude:
+                lat:45.889529
+            },
+            //map's zoom : see eventListeners.loadend !
+            11,
+            {
+                layers:['GEOGRAPHICALGRIDSYSTEMS.MAPS','ORTHOIMAGERY.ORTHOPHOTOS'],
+                layersOptions: {'GEOGRAPHICALGRIDSYSTEMS.MAPS':{visibility:true,opacity:0.9}},
+                language:'fr',
+                theme:{
+                	name:'black',
+                	styles:[{css:Geoportal._getScriptLocation()+'theme/black/style.css',id:'__GeoportalBlackCss__'},
+                	        {css:Geoportal._getScriptLocation()+'theme/black/ie6-style.css',id:'__IE6GeoportalBlackCss__',alpha:true}
+                	]
+                },
+               	viewerClass:'Geoportal.Viewer.Default',
+               	componentsOptions:{'Geoportal.Component.LegalNotice.Logo':{logoSize:30}}
+            }
+        );
+    };
+    //--><!]]></script>
 		</div>
 	</h:body>
 </f:view>
