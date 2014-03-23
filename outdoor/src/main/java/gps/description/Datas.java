@@ -1,14 +1,22 @@
 package gps.description;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Datas {
 
-	private Positions trkseg;
+	private List<Position> trkseg = new ArrayList<Position>();
 
-	public Positions getTrkseg() {
+	public void add(Position p) {
+		trkseg.add(p);
+	}
+
+	public List<Position> getTrkseg() {
 		return trkseg;
 	}
 
-	public void setTrkseg(Positions trkseg) {
+	public void setTrkseg(List<Position> trkseg) {
 		this.trkseg = trkseg;
 	}
+
 }

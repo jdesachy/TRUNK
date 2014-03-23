@@ -1,19 +1,19 @@
 package gps.description;
 
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+
 public class Coordonnees {
 
-	private final double maxlon;
-	private final double maxlat;
-	private final double minlon;
-	private final double minlat;
+	@XStreamAsAttribute
+	private double maxlon;
+	@XStreamAsAttribute
+	private double maxlat;
+	@XStreamAsAttribute
+	private double minlon;
+	@XStreamAsAttribute
+	private double minlat;
 
-	public Coordonnees(double maxlon, double maxlat, double minlon,
-			double minlat) {
-		super();
-		this.maxlon = maxlon;
-		this.maxlat = maxlat;
-		this.minlon = minlon;
-		this.minlat = minlat;
+	public Coordonnees() {
 	}
 
 	public double getMaxlon() {
@@ -30,6 +30,22 @@ public class Coordonnees {
 
 	public double getMinlat() {
 		return minlat;
+	}
+
+	public void setMaxlon(double maxlon) {
+		this.maxlon = maxlon;
+	}
+
+	public void setMaxlat(double maxlat) {
+		this.maxlat = maxlat;
+	}
+
+	public void setMinlon(double minlon) {
+		this.minlon = minlon;
+	}
+
+	public void setMinlat(double minlat) {
+		this.minlat = minlat;
 	}
 
 }

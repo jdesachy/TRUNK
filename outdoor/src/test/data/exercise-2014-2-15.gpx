@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" creator="http://www.polarpersonaltrainer.com" version="1.1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <metadata>
+        <author>
+            <name>Jérôme Desachy</name>
+        </author>
+        <time>2014-02-16T14:15:14.777Z</time>
+        <bounds maxlon="6.517752" maxlat="45.927368" minlon="6.484007" minlat="45.909038"/>
+    </metadata>
+    <trk>
+        <trkseg>
+            <trkpt lon="6.484033" lat="45.922770">
+                <ele>1447.00</ele>
+                <time>2014-02-15T07:39:00.000Z</time>
+                <sat>9</sat>
+            </trkpt>
+            <trkpt lon="6.484033" lat="45.922768">
+                <ele>1447.00</ele>
+                <time>2014-02-15T07:39:01.000Z</time>
+                <sat>9</sat>
+            </trkpt>
+        </trkseg>
+    </trk>
+</gpx>

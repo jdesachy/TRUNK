@@ -1,71 +1,64 @@
 package gps;
 
-import gps.description.Coordonnees;
-import gps.description.Datas;
 import gps.description.GpxFile;
-import gps.description.Infos;
-import gps.description.Person;
-import gps.description.Position;
-import gps.description.Positions;
+import gps.exception.GpsLoaderExcpetion;
+import gps.exception.GpsWriterException;
 
-import java.util.Calendar;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-
-import com.thoughtworks.xstream.XStream;
 
 public class GpsLoaderTest {
 
+	private GpsLoader loader;
+
+	@Before
+	public void setup() throws FileNotFoundException {
+		File file = new File("src/test/data/exercise-2014-2-15.gpx");
+		FileInputStream in = new FileInputStream(file);
+		loader = new GpsLoader(in);
+	}
+
 	@Test
-	public void testCreateXml() {
-		GpxFile file = new GpxFile();
-		file.setMetadata(buildInfos());
-		file.setTrk(buildDatas());
-		XStream xstream = new XStream();
-		xstream.alias("gpx", GpxFile.class);
-		xstream.useAttributeFor(Coordonnees.class, "maxlon");
-		xstream.useAttributeFor(Coordonnees.class, "maxlat");
-		xstream.useAttributeFor(Coordonnees.class, "minlon");
-		xstream.useAttributeFor(Coordonnees.class, "minlat");
+	public void testConvertFile() throws GpsLoaderExcpetion,
+			FileNotFoundException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+				"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
-		xstream.useAttributeFor(Position.class, "lon");
-		xstream.useAttributeFor(Position.class, "lat");
-
-		System.out.println(xstream.toXML(file));
+		GpxFile gpx = loader.convertFile();
+		Assert.assertNotNull(gpx);
+		Assert.assertNotNull(gpx.getNamespace());
+		Assert.assertNotNull(gpx.getXmlSchema());
+		Assert.assertNotNull(gpx.getSchemaLocation());
+		Assert.assertEquals("Jérôme Desachy", gpx.getMetadata().getAuthor()
+				.getName());
+		Assert.assertEquals("2014-02-16T14:15:14.777Z",
+				dateFormat.format(gpx.getMetadata().getTime()));
+		Assert.assertEquals(2, gpx.getTrk().getTrkseg().size());
+		Assert.assertEquals("6.484033", gpx.getTrk().getTrkseg().get(0)
+				.getLon());
+		Assert.assertEquals("45.922770", gpx.getTrk().getTrkseg().get(0)
+				.getLat());
+		Assert.assertEquals("1447.00", gpx.getTrk().getTrkseg().get(0).getEle());
+		Assert.assertEquals(9, gpx.getTrk().getTrkseg().get(0).getSat());
+		Assert.assertEquals("2014-02-15T07:39:00.000Z",
+				dateFormat.format(gpx.getTrk().getTrkseg().get(0).getTime()));
 	}
 
-	private Datas buildDatas() {
-		Datas datas = new Datas();
-		datas.setTrkseg(buildPositions());
-		return datas;
-	}
-
-	private Positions buildPositions() {
-		Positions positions = new Positions();
-		Position p = new Position(1.44, 43.55);
-		p.setEle(1775.00);
-		p.setSat(6);
-		p.setTime(Calendar.getInstance().getTime());
-		positions.add(p);
-		return positions;
-	}
-
-	private Infos buildInfos() {
-		Infos infos = new Infos();
-		infos.setAuthor(buildPerson());
-		infos.setBounds(buildCoord());
-		infos.setTime(Calendar.getInstance());
-		return infos;
-	}
-
-	private Coordonnees buildCoord() {
-		return new Coordonnees(1.233, 23.444, 12.444, 54.9);
-	}
-
-	private Person buildPerson() {
-		Person person = new Person();
-		person.setName("Dupont Bernard");
-		return person;
+	@Test
+	public void testExportNewGpx() throws GpsWriterException,
+			GpsLoaderExcpetion, UnsupportedEncodingException {
+		String xml = loader.exportNewGpx(loader.convertFile());
+		Assert.assertTrue("encoding xml attribut", xml.contains("encoding"));
+		Assert.assertTrue(xml.contains("xmlns"));
+		Assert.assertTrue(xml.contains(new String("Jérôme Desachy".getBytes(),
+				"UTF-8")));
 	}
 
 }

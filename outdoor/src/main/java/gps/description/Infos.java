@@ -1,11 +1,11 @@
 package gps.description;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class Infos {
 
 	private Person author;
-	private Calendar time;
+	private Date time;
 	private Coordonnees bounds;
 
 	public Person getAuthor() {
@@ -16,20 +16,20 @@ public class Infos {
 		this.author = author;
 	}
 
-	public Calendar getTime() {
-		return time;
-	}
-
-	public void setTime(Calendar time) {
-		this.time = time;
-	}
-
 	public Coordonnees getBounds() {
 		return bounds;
 	}
 
 	public void setBounds(Coordonnees bounds) {
 		this.bounds = bounds;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
 	}
 
 }

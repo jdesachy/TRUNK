@@ -7,61 +7,73 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:body>
 	<ui:composition>
-	
-			<p:tabView id="activityTab">
 
-				<!-- Detail de l'activite -->
-				<p:tab id="tabDescActivity" title="#{msg['activity.title']}">
-					<p:scrollPanel id="activityScroll" class="scrollDetail" scrollMode="native">
-						<p:panelGrid columns="2">
-							<h:outputLabel value="#{msg['form.activity.name']}"
-								class="detailTitle" />
-							<h:outputLabel value="#{activityControler.selectedBean.name}" />
-	
-							<h:outputLabel value="#{msg['form.activity.date']}"
-								class="detailTitle" />
-							<h:outputLabel value="#{activityControler.selectedBean.date}" />
-	
-							<h:outputLabel value="#{msg['form.activity.massif']}"
-								class="detailTitle" />
-							<h:outputLabel value="#{activityControler.selectedBean.massif}" />
-	
-							<h:outputLabel value="#{msg['form.activity.traveledAltitude']}"
-								class="detailTitle" />
-							<h:outputLabel value="#{activityControler.selectedBean.denivele}" />
-	
-							<h:outputLabel value="#{msg['form.activity.profiles']}"
-								class="detailTitle" />
-							<p:dataList value="#{activityControler.selectedBean.persons}"
-								var="p">#{p}</p:dataList>
-	
-							<h:outputLabel value="#{msg['form.activity.comment']}"
-								class="detailTitle" />
-							<h:outputLabel value="#{activityControler.selectedBean.comment}" />
-						</p:panelGrid>
-					</p:scrollPanel>
-				</p:tab>
+		<p:tabView id="activityTab">
 
-				<!-- Affichage des photos -->
-				<p:tab id="tabAlbum" title="#{msg['activity.pictures']}">
-				
-					<p:scrollPanel id="activityScrollAlbum" class="scrollDetail" scrollMode="native" 
+			<!-- Detail de l'activite -->
+			<p:tab id="tabDescActivity" title="#{msg['activity.title']}">
+				<p:scrollPanel id="activityScroll" class="scrollDetail"
+					scrollMode="native">
+					<p:panelGrid columns="2">
+						<h:outputLabel value="#{msg['form.activity.name']}"
+							class="detailTitle" />
+						<h:outputLabel value="#{activityControler.selectedBean.name}" />
+
+						<h:outputLabel value="#{msg['form.activity.date']}"
+							class="detailTitle" />
+						<h:outputLabel value="#{activityControler.selectedBean.date}" />
+
+						<h:outputLabel value="#{msg['form.activity.massif']}"
+							class="detailTitle" />
+						<h:outputLabel value="#{activityControler.selectedBean.massif}" />
+
+						<h:outputLabel value="#{msg['form.activity.traveledAltitude']}"
+							class="detailTitle" />
+						<h:outputLabel value="#{activityControler.selectedBean.denivele}" />
+
+						<h:outputLabel value="#{msg['form.activity.profiles']}"
+							class="detailTitle" />
+						<p:dataList value="#{activityControler.selectedBean.persons}"
+							var="p">#{p}</p:dataList>
+
+						<h:outputLabel value="#{msg['form.activity.comment']}"
+							class="detailTitle" />
+						<h:outputLabel value="#{activityControler.selectedBean.comment}" />
+
+						<h:outputLabel value="#{msg['activity.gps']}" class="detailTitle" />
+						<p:commandLink id="linkGps" action="viewGpx"
+							style="margin-right:20px;" ajax="false">
+							<h:outputLabel value="#{activityControler.selectedBean.gpxUrl}" />
+						</p:commandLink>
+					</p:panelGrid>
+				</p:scrollPanel>
+			</p:tab>
+
+			<!-- Affichage des photos -->
+			<p:tab id="tabAlbum" title="#{msg['activity.pictures']}">
+
+				<p:scrollPanel id="activityScrollAlbum" class="scrollDetail"
+					scrollMode="native"
 					rendered="#{not empty activityControler.selectedBean.album}">
-						<script type="text/javascript">
-						$(document).ready(function() {
-						    $("#container").pwi({
-						        username: '101100397802535634623',
-						        mode: 'album',
-						        album: '#{activityControler.selectedBean.album}'
-						    });
-						});
-						</script>
-						<div id="container"></div>
-					</p:scrollPanel>
+					<script type="text/javascript">
+						$(document)
+								.ready(
+										function() {
+											$("#container")
+													.pwi(
+															{
+																username : '101100397802535634623',
+																mode : 'album',
+																album : '#{activityControler.selectedBean.album}'
+															});
+										});
+					</script>
+					<div id="container"></div>
+				</p:scrollPanel>
 
-				</p:tab>
+			</p:tab>
 
-			</p:tabView>
+		</p:tabView>
 
 	</ui:composition>
 </h:body>

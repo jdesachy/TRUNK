@@ -8,12 +8,13 @@
 <f:view locale="fr">
 	<h:head>
 		<title><h:outputText value="#{msg['welcome.topTitle']}" /></title>
-		
-		<script type="text/javascript" src="http://api.ign.fr/geoportail/api/js/latest/Geoportal.js"><!-- --></script>
 		<h:outputStylesheet library="css" name="styles.css" />
+		<script type="text/javascript" src="http://api.ign.fr/geoportail/api/js/latest/Geoportal.js"><!-- --></script>
 	</h:head>
 	<h:body>
-									 <div id="viewerDiv"></div>
+		<div id="welcomPage" class="page">
+			<ui:include src="/menu.xhtml" />
+			 <div id="viewerDiv"></div>
     			
     <script type="text/javascript"><!--//--><![CDATA[//><!--
     var iv= null;
@@ -73,7 +74,7 @@
 					gpxLayer = viewer.getMap().addLayer(
 					"GPX",
 					"trace",
-					"http://jerome.desachy.free.fr/exercise-2014-2-15.gpx",{
+					"http://jerome.desachy.free.fr/files/" + '#{activityControler.selectedBean.gpxUrl}',{
 						visibility: true,
 						opacity:0.8,
 						styleMap: styleTrace,
@@ -101,6 +102,7 @@
         );
     };
     //--><!]]></script>
+    	</div>
 	</h:body>
 
 </f:view>

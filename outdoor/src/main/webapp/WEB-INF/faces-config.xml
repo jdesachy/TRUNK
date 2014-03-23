@@ -45,6 +45,34 @@
 </navigation-rule>
 
 <navigation-rule>
+	<from-view-id>/gpxView.xhtml</from-view-id>
+	<navigation-case>
+		<from-outcome>home</from-outcome>
+		<to-view-id>/index.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>list</from-outcome>
+		<to-view-id>/allActivities.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>edit</from-outcome>
+		<to-view-id>/ski/formSki.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>stats</from-outcome>
+		<to-view-id>/statistics.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>newProfile</from-outcome>
+		<to-view-id>/profile/profile.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>listProfiles</from-outcome>
+		<to-view-id>/profile/profileList.xhtml</to-view-id>
+	</navigation-case>
+</navigation-rule>
+
+<navigation-rule>
 	<from-view-id>/allActivities.xhtml</from-view-id>
 	<navigation-case>
 		<from-outcome>home</from-outcome>
@@ -69,6 +97,10 @@
 	<navigation-case>
 		<from-outcome>listProfiles</from-outcome>
 		<to-view-id>/profile/profileList.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+		<from-outcome>viewGpx</from-outcome>
+		<to-view-id>/gpxView.xhtml</to-view-id>
 	</navigation-case>
 </navigation-rule>
 
@@ -196,4 +228,5 @@
 		<to-view-id>/profile/profileList.xhtml</to-view-id>
 	</navigation-case>
 </navigation-rule>
+
 </faces-config>

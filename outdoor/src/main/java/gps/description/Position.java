@@ -2,33 +2,38 @@ package gps.description;
 
 import java.util.Date;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+
+@XStreamAlias("trkpt")
 public class Position {
 
-	private final double lon;
-	private final double lat;
-	private double ele;
+	@XStreamAsAttribute
+	private final String lon;
+	@XStreamAsAttribute
+	private final String lat;
+	private String ele;
 	private Date time;
 	private int sat;
 
-	public Position(double lon, double lat) {
-		super();
+	public Position(String lon, String lat) {
 		this.lon = lon;
 		this.lat = lat;
 	}
 
-	public double getLon() {
+	public String getLon() {
 		return lon;
 	}
 
-	public double getLat() {
+	public String getLat() {
 		return lat;
 	}
 
-	public double getEle() {
+	public String getEle() {
 		return ele;
 	}
 
-	public void setEle(double ele) {
+	public void setEle(String ele) {
 		this.ele = ele;
 	}
 

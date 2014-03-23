@@ -95,7 +95,15 @@
 						<h:outputText value="#{msg['form.activity.gpx']}" />
 					</h:panelGroup>
 					<h:panelGroup class="r">
-						<p:inputText id="gpxFile" value="#{formSki.gpxUrl}" />
+						<p:fileUpload id="uploadGpx" fileUploadListener="#{formSki.uploadGpx}"
+							mode="advanced" auto="true" sizeLimit="10000000"
+							allowTypes="/(\.|\/)(xml|gpx)$/" update="messages, gpxFile, uploadGpx"
+							rendered="#{empty formSki.gpxUrl}" />
+
+						<p:inputText id="gpxFile" value="#{formSki.gpxUrl}"
+							disabled="true" />
+
+						<p:growl id="messages" showDetail="true" />
 						<br />
 					</h:panelGroup>
 

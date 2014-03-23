@@ -9,9 +9,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+
+import org.primefaces.event.FileUploadEvent;
 
 import front.activity.ActivityBean;
 import front.activity.db.ActivityDBDelegate;
@@ -21,6 +25,8 @@ import front.activity.db.exception.ActivityUpdateException;
 import front.profile.PersonBean;
 import front.profile.db.ProfileDBDelegate;
 import front.profile.db.exception.ProfileLoaderException;
+import gps.GpsLoader;
+import gps.description.GpxFile;
 
 @ManagedBean(name = "formSki")
 @SessionScoped
@@ -48,6 +54,23 @@ public class FormSki implements Serializable {
 	private boolean edit;
 	private final ProfileDBDelegate profileDBDelegate = new ProfileDBDelegate();
 	private final ActivityDBDelegate activityDBDelegate = new ActivityDBDelegate();
+
+	public void uploadGpx(FileUploadEvent event) {
+		try {
+			GpsLoader gpsLoader = new GpsLoader(event.getFile()
+					.getInputstream());
+			GpxFile gpx = gpsLoader.convertFile();
+			String xml = gpsLoader.exportNewGpx(gpx);
+			gpsLoader.uploadFile(xml, event.getFile().getFileName());
+			gpxUrl = event.getFile().getFileName();
+
+			FacesMessage msg = new FacesMessage("Succesful", event.getFile()
+					.getFileName() + " is uploaded.");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		} catch (Exception e) {
+			log.log(Level.SEVERE, e.getMessage(), e);
+		}
+	}
 
 	public String editActivity() {
 		String resultPage = "edit";
