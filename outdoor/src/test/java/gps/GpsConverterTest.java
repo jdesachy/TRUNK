@@ -16,12 +16,12 @@ public class GpsConverterTest {
 	public void testConvert() throws Exception {
 		GpsConverter converter = new GpsConverter();
 		GpxFile newGpx = converter.convert(buildGpx());
-		Assert.assertEquals(2, newGpx.getTrk().getTrkseg().size());
+		Assert.assertEquals(2, newGpx.getDatas().get(0).getTrkseg().size());
 	}
 
 	private GpxFile buildGpx() {
 		GpxFile gpxFile = new GpxFile();
-		gpxFile.setTrk(buildDatas());
+		gpxFile.addData(buildDatas());
 		return gpxFile;
 	}
 

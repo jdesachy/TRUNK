@@ -20,5 +20,17 @@
                 <sat>9</sat>
             </trkpt>
         </trkseg>
+        <trkseg>
+            <trkpt lon="6.484033" lat="45.822770">
+                <ele>1447.00</ele>
+                <time>2014-02-15T07:40:00.000Z</time>
+                <sat>9</sat>
+            </trkpt>
+            <trkpt lon="6.484033" lat="45.722768">
+                <ele>1447.00</ele>
+                <time>2014-02-15T07:40:01.000Z</time>
+                <sat>9</sat>
+            </trkpt>
+        </trkseg>
     </trk>
 </gpx>

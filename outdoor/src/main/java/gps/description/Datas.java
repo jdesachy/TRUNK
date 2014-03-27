@@ -3,20 +3,25 @@ package gps.description;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
+
+@XStreamAlias("trkseg")
 public class Datas {
 
-	private List<Position> trkseg = new ArrayList<Position>();
+	@XStreamImplicit
+	private List<Position> segment = new ArrayList<Position>();
 
 	public void add(Position p) {
-		trkseg.add(p);
+		segment.add(p);
 	}
 
 	public List<Position> getTrkseg() {
-		return trkseg;
+		return segment;
 	}
 
 	public void setTrkseg(List<Position> trkseg) {
-		this.trkseg = trkseg;
+		this.segment = trkseg;
 	}
 
 }

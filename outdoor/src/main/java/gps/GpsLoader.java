@@ -1,6 +1,7 @@
 package gps;
 
 import gps.description.Coordonnees;
+import gps.description.Datas;
 import gps.description.GpxFile;
 import gps.description.Position;
 import gps.description.converter.DateConverter;
@@ -33,6 +34,7 @@ public class GpsLoader {
 		xstream.processAnnotations(GpxFile.class);
 		xstream.processAnnotations(Coordonnees.class);
 		xstream.processAnnotations(Position.class);
+		xstream.processAnnotations(Datas.class);
 		xstream.registerConverter(new DateConverter());
 	}
 

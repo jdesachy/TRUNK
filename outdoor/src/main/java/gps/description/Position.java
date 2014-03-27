@@ -15,6 +15,7 @@ public class Position {
 	private String ele;
 	private Date time;
 	private int sat;
+	private String cmt;
 
 	public Position(String lon, String lat) {
 		this.lon = lon;
@@ -51,6 +52,14 @@ public class Position {
 
 	public void setTime(Date time) {
 		this.time = time;
+	}
+
+	public String getCmt() {
+		return cmt;
+	}
+
+	public void setCmt(String cmt) {
+		this.cmt = cmt;
 	}
 
 }

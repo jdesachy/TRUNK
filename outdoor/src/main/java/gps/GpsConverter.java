@@ -1,5 +1,6 @@
 package gps;
 
+import gps.description.Datas;
 import gps.description.GpxFile;
 import gps.description.Position;
 
@@ -18,16 +19,27 @@ public class GpsConverter {
 
 	public GpxFile convert(GpxFile fileToConvert)
 			throws InitConfigurationException {
-		GpxFile res = fileToConvert;
+		GpxFile res = new GpxFile();
+		res.setMetadata(fileToConvert.getMetadata());
+
 		long interval = readConfigurationInterval();
-		List<Position> newPositions = buildNewPositions(res, interval);
-		res.getTrk().setTrkseg(newPositions);
+		List<Datas> datas = fileToConvert.getDatas();
+		for (Datas actualDatas : datas) {
+			res.addData(buildNewDatas(interval, actualDatas));
+		}
 		return res;
 	}
 
-	private List<Position> buildNewPositions(GpxFile res, long interval) {
+	private Datas buildNewDatas(long interval, Datas actualDatas) {
+		List<Position> newPositions = buildNewPositions(actualDatas, interval);
+		Datas d = new Datas();
+		d.setTrkseg(newPositions);
+		return d;
+	}
+
+	private List<Position> buildNewPositions(Datas datas, long interval) {
 		List<Position> newPositions = new ArrayList<Position>();
-		List<Position> positions = res.getTrk().getTrkseg();
+		List<Position> positions = datas.getTrkseg();
 		Position lastPos = positions.get(0);
 		newPositions.add(lastPos);
 		for (int index = 1; index < positions.size(); index++) {

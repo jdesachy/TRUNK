@@ -1,5 +1,8 @@
 package gps.description;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
@@ -25,7 +28,9 @@ public class GpxFile {
 	private String schemaLocation;
 
 	private Infos metadata;
-	private Datas trk;
+
+	@XStreamAlias("trk")
+	private List<Datas> datas = new ArrayList<Datas>();
 
 	public Infos getMetadata() {
 		return metadata;
@@ -35,12 +40,16 @@ public class GpxFile {
 		this.metadata = metadata;
 	}
 
-	public Datas getTrk() {
-		return trk;
+	public void addData(Datas d) {
+		datas.add(d);
 	}
 
-	public void setTrk(Datas trk) {
-		this.trk = trk;
+	public List<Datas> getDatas() {
+		return datas;
+	}
+
+	public void setDatas(List<Datas> datas) {
+		this.datas = datas;
 	}
 
 	public String getNamespace() {
