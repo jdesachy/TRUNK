@@ -15,7 +15,7 @@ import org.primefaces.model.chart.ChartSeries;
 
 import front.activity.ActivityBean;
 
-public class ChartBuilder  implements Serializable{
+public class ChartBuilder implements Serializable {
 
 	private static final long serialVersionUID = -341228354196134346L;
 
@@ -67,6 +67,22 @@ public class ChartBuilder  implements Serializable{
 			}
 		}
 		return max;
+	}
+
+	public CartesianChartModel getTotalOut(List<ActivityBean> activitiesBean) {
+		CartesianChartModel linearModel = new CartesianChartModel();
+		List<Integer> years = initYears(activitiesBean);
+
+		StatisticBuilder statsBuilder = new StatisticBuilder(activitiesBean);
+		BarChartSeries series1 = new BarChartSeries();
+		series1.setLabel("Series 1");
+		for (Integer curYear : years) {
+			int totalOut = statsBuilder.getTotalOut(curYear);
+			series1.set(String.valueOf(curYear.intValue()), totalOut);
+		}
+		linearModel.addSeries(series1);
+		return linearModel;
+
 	}
 
 }

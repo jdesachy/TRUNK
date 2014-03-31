@@ -57,6 +57,8 @@ public class GpsLoaderTest {
 				"2014-02-15T07:39:00.000Z",
 				dateFormat.format(gpx.getDatas().get(0).getTrkseg().get(0)
 						.getTime()));
+		Assert.assertEquals(" GPS fix gained.", gpx.getDatas().get(1)
+				.getTrkseg().get(1).getCmt());
 	}
 
 	@Test
@@ -94,6 +96,7 @@ public class GpsLoaderTest {
 	private Position buildPositions(Date time) {
 		Position position = new Position("12.33", "40.4");
 		position.setTime(time);
+		position.setCmt("GPS fix gained");
 		return position;
 	}
 

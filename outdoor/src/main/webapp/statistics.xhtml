@@ -19,6 +19,11 @@
 			legendPosition="e" zoom="false" animate="false"
 			title="#{msg['stats.total']}" minY="0"
 			maxY="#{statisticController.maxTotal + 5000}" style="width: 300px;"/>
+		
+		<p:barChart value="#{statisticController.totalOut}"
+			legendPosition="e" zoom="false" animate="false"
+			title="#{msg['stats.totalOut']}" minY="0"
+			style="width: 300px;"/>
 	</div>
 
 </h:body>

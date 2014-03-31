@@ -27,6 +27,7 @@ public class StatisticController implements Serializable {
 	private final ChartBuilder chartBuilder = new ChartBuilder();
 
 	private CartesianChartModel linearModel;
+	private CartesianChartModel totalOut;
 	private int maxTotal;
 
 	public String loadStatistics() {
@@ -37,6 +38,7 @@ public class StatisticController implements Serializable {
 			log.log(Level.SEVERE, e.getMessage());
 		}
 		linearModel = chartBuilder.getTotalChart(activitiesBean);
+		totalOut = chartBuilder.getTotalOut(activitiesBean);
 		maxTotal = chartBuilder.getMax(linearModel);
 		return "stats";
 	}
@@ -47,6 +49,10 @@ public class StatisticController implements Serializable {
 
 	public int getMaxTotal() {
 		return maxTotal;
+	}
+
+	public CartesianChartModel getTotalOut() {
+		return totalOut;
 	}
 
 }

@@ -51,4 +51,16 @@ public class StatisticBuilder implements Serializable {
 				&& bean.getDate().compareTo(maxDate.getTime()) < 0;
 	}
 
+	public int getTotalOut(Integer curYear) {
+		int result = 0;
+		Calendar minDate = getMinDate(curYear);
+		Calendar maxDate = getMaxDate(curYear);
+		for (ActivityBean bean : statisticsBean) {
+			if (isProcessing(minDate, maxDate, bean)) {
+				result++;
+			}
+		}
+		return result;
+	}
+
 }

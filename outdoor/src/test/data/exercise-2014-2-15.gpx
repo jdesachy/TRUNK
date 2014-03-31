@@ -29,6 +29,7 @@
             <trkpt lon="6.484033" lat="45.722768">
                 <ele>1447.00</ele>
                 <time>2014-02-15T07:40:01.000Z</time>
+                <cmt> GPS fix gained.</cmt>
                 <sat>9</sat>
             </trkpt>
         </trkseg>
