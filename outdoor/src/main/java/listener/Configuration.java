@@ -28,14 +28,14 @@ public class Configuration {
 	}
 
 	private void loadConfiguration() throws InitConfigurationException {
-		log.log(Level.INFO, "Démarrage du chargement des propriétés");
+		log.log(Level.INFO, "DÈémarrage du chargement des propriétés");
 		InputStream input = null;
 		try {
 			input = this.getClass().getResourceAsStream("/outdoor.properties");
 			props = new Properties();
 			props.load(input);
 
-			log.log(Level.INFO, "Propriétés chargées avec succès.");
+			log.log(Level.INFO, "PropriÈétÈés chargéÈes avec succËès.");
 		} catch (FileNotFoundException e) {
 			throw new InitConfigurationException(e);
 		} catch (IOException e) {

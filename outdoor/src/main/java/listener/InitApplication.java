@@ -28,7 +28,7 @@ public class InitApplication implements ServletContextListener {
 			executor.initConnection();
 		} catch (Exception e) {
 			log.log(Level.FATAL,
-					"Une erreur est survenue au démarrage de l'application", e);
+					"Une erreur est survenue au déÈmarrage de l'application", e);
 		}
 	}
 
