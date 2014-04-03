@@ -62,7 +62,10 @@
 						<f:facet name="header">
 							<h:outputText value="#{msg['activities.comment']}" />
 						</f:facet>
-						<h:outputText value="#{a.comment}" />
+						<h:outputText value="#{a.comment}">
+							<f:converter converterId="CommentConverter" />
+    						<f:attribute name="maxlength" value="200" />
+						</h:outputText>
 					</p:column>
 					<p:column>
 						<p:commandButton update="@([id$=showActivity])"
