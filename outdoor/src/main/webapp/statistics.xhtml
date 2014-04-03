@@ -15,15 +15,20 @@
 	<div id="welcomPage" class="page">
 		<ui:include src="/menu.xhtml" />
 		
-		<p:barChart value="#{statisticController.linearModel}"
-			legendPosition="e" zoom="false" animate="false"
-			title="#{msg['stats.total']}" minY="0"
-			maxY="#{statisticController.maxTotal + 5000}" style="width: 300px;"/>
+		<div class="statsAlign">
+			<p:barChart value="#{statisticController.linearModel}"
+				legendPosition="e" zoom="false" animate="false"
+				title="#{msg['stats.total']}" minY="0"
+				maxY="#{statisticController.maxTotal + 5000}" style="width: 300px;"/>
+		</div>
+		<div class="statsAlign">
+			<p:barChart value="#{statisticController.totalOut}"
+				legendPosition="e" zoom="false" animate="false"
+				title="#{msg['stats.totalOut']}" minY="0"
+				style="width: 300px;"/>
+		</div>
 		
-		<p:barChart value="#{statisticController.totalOut}"
-			legendPosition="e" zoom="false" animate="false"
-			title="#{msg['stats.totalOut']}" minY="0"
-			style="width: 300px;"/>
+		<br class="clear" />
 	</div>
 
 </h:body>

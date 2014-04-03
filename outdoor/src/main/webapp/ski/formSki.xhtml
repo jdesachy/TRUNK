@@ -95,14 +95,18 @@
 						<h:outputText value="#{msg['form.activity.gpx']}" />
 					</h:panelGroup>
 					<h:panelGroup class="r">
-						<p:fileUpload id="uploadGpx" fileUploadListener="#{formSki.uploadGpx}"
-							mode="advanced" auto="true" sizeLimit="10000000"
-							allowTypes="/(\.|\/)(xml|gpx)$/" update="messages, gpxFile, uploadGpx"
-							rendered="#{empty formSki.gpxUrl}" />
+						<p:fileUpload id="uploadGpx"
+							fileUploadListener="#{formSki.uploadGpx}" mode="advanced"
+							auto="true" sizeLimit="10000000" allowTypes="/(\.|\/)(xml|gpx)$/"
+							update="messages, gpxFile"/>
 
 						<p:inputText id="gpxFile" value="#{formSki.gpxUrl}"
 							disabled="true" />
 
+						<p:commandButton actionListener="#{formSki.clearGpx}"
+							icon="ui-icon-close" 
+							update="messages, gpxFile" />
+							
 						<p:growl id="messages" showDetail="true" />
 						<br />
 					</h:panelGroup>

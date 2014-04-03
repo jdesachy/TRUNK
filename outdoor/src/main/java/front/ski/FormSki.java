@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -54,6 +55,14 @@ public class FormSki implements Serializable {
 	private boolean edit;
 	private final ProfileDBDelegate profileDBDelegate = new ProfileDBDelegate();
 	private final ActivityDBDelegate activityDBDelegate = new ActivityDBDelegate();
+
+	public void clearGpx(ActionEvent event) {
+		actionBean.setGpxUrl(null);
+		gpxUrl = null;
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+				"Fichier supprimé", null);
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 
 	public void uploadGpx(FileUploadEvent event) {
 		try {
