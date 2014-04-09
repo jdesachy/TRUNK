@@ -29,6 +29,7 @@ public class ActivityControler implements Serializable {
 	private ActivityBean selectedBean;
 
 	private List<ActivityBean> activitiesBean;
+	private List<ActivityBean> filteredBean;
 
 	public String loadList() {
 		try {
@@ -80,6 +81,14 @@ public class ActivityControler implements Serializable {
 
 	public void setSelectedBean(ActivityBean selectedBean) {
 		this.selectedBean = selectedBean;
+	}
+
+	public List<ActivityBean> getFilteredBean() {
+		return filteredBean;
+	}
+
+	public void setFilteredBean(List<ActivityBean> filteredBean) {
+		this.filteredBean = filteredBean;
 	}
 
 }

@@ -16,24 +16,34 @@
 			<h:form id="profileForm">
 				<p:growl id="gmessages" showDetail="true" />
 
-				<p:dataTable id="profileListTable"
-					value="#{profileController.persons}" var="p">
-					<p:column>
-						<h:outputText value="#{p.firstName}" />
-					</p:column>
-					<p:column>
-						<h:outputText value="#{p.lastName}" />
-					</p:column>
-					<p:column>
-						<p:commandButton action="#{profileController.delete}"
-							update="profileListTable,@([id$=gmessages])"
-							title="#{msg['form.profile.delete']}" icon="ui-icon-close">
-							<f:setPropertyActionListener
-								target="#{profileController.personBean}" value="#{p}" />
-						</p:commandButton>
-					</p:column>
-				</p:dataTable>
+				<div class="profileList">
+					<p:dataTable id="profileListTable"
+						value="#{profileController.persons}" var="p">
 
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['profiles.firstname']}" />
+							</f:facet>
+							<h:outputText value="#{p.firstName}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['profiles.lastname']}" />
+							</f:facet>
+							<h:outputText value="#{p.lastName}" />
+						</p:column>
+						<p:column class="buttonAction">
+							<p:commandButton action="#{profileController.delete}"
+								update="profileListTable,@([id$=gmessages])"
+								title="#{msg['form.profile.delete']}" icon="ui-icon-close">
+								<f:setPropertyActionListener
+									target="#{profileController.personBean}" value="#{p}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+
+				</div>
 			</h:form>
 		</div>
 	</h:body>

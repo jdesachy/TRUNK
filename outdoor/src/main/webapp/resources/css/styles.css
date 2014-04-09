@@ -99,8 +99,6 @@ div#viewerDiv {
 	font-weight:bold;
 	color: #ff0000;
 }
-
-<!-- Detail activité-->
 .ui-scrollpanel-content{
 	padding: 10px!important;
 }
@@ -126,8 +124,6 @@ div#viewerDiv {
 	height : 400px;
 }
 
-<!-- StatistiqueŽ -->
-
 .statsAlign{
 	float: left;
 	width: 300px;
@@ -135,4 +131,12 @@ div#viewerDiv {
 }
 .clear { 
 	clear: both; 
+}
+
+.buttonAction{
+	width: 20px;
+}
+.profileList{
+	width: 80%;
+	margin: auto;
 }
