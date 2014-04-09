@@ -9,26 +9,6 @@
 	<h:head>
 		<title><h:outputText value="#{msg['welcome.topTitle']}" /></title>
 		<h:outputStylesheet library="css" name="styles.css" />
-
-    <!-- These files are needed for FancyBox -->
-	<h:outputStylesheet name="js/jquery.fancybox/jquery.fancybox.css" />
-    <h:outputScript library="js/jquery.fancybox" name="jquery.fancybox.pack.js"/>
-    
-    <!-- These files are needed to display the FancyBox buttons at the top, including slideshow control -->
-   	<h:outputStylesheet name="js/jquery.fancybox/helpers/jquery.fancybox-buttons.css" />
-    <h:outputScript library="js/jquery.fancybox/helpers/" name="jquery.fancybox-buttons.js"/>
-
-    <!-- These files are needed for SlimBox -->
-   	<h:outputStylesheet name="js/jquery.slimbox2/jquery.slimbox2.css" />
-    <h:outputScript library="js/jquery.slimbox2" name="jquery.slimbox2.js"/>
-
-    <!-- These files are needed for ColorBox -->
-   	<h:outputStylesheet name="js/jquery.colorbox/colorbox.css" />
-    <h:outputScript library="js/jquery.colorbox" name="jquery.colorbox-min.js"/>
-   	
-    <!-- These files are the PWI files -->
-    <h:outputStylesheet library="css" name="pwi.css" />
-    <h:outputScript library="js" name="jquery.pwi.js"/>
 	</h:head>
 	<h:body>
 
@@ -63,13 +43,12 @@
 							<h:outputText value="#{msg['activities.comment']}" />
 						</f:facet>
 						<h:outputText value="#{a.comment}">
-							<f:converter converterId="CommentConverter"/>
-    						<f:attribute name="maxlength" value="200" />
+							<f:converter converterId="CommentConverter" />
+							<f:attribute name="maxlength" value="200" />
 						</h:outputText>
 					</p:column>
 					<p:column>
-						<p:commandButton update="@([id$=showActivity])"
-							icon="ui-icon-search" oncomplete="PF('activityDialog').show()">
+						<p:commandButton action="detailActivity" icon="ui-icon-search">
 							<f:setPropertyActionListener value="#{a}"
 								target="#{activityControler.selectedBean}" />
 						</p:commandButton>
@@ -99,13 +78,6 @@
 					</f:facet>
 
 				</p:dataTable>
-
-				<p:dialog id="showActivity" class="activityDetail"
-					widgetVar="activityDialog" resizable="false">
-					<ui:insert name="commonActivity">
-						<ui:include src="/viewActivity.xhtml"></ui:include>
-					</ui:insert>
-				</p:dialog>
 
 			</h:form>
 		</div>
