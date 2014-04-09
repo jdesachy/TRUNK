@@ -8,8 +8,6 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import org.primefaces.context.RequestContext;
-
 import front.activity.db.ActivityDBDelegate;
 import front.activity.db.exception.ActivityLoaderException;
 import front.activity.db.exception.DeleteActivityException;
@@ -51,20 +49,12 @@ public class ActivityControler implements Serializable {
 		return null;
 	}
 
-	public void showDetail() {
-		RequestContext.getCurrentInstance().openDialog("viewActivity");
-	}
-
 	public ActivityBean getActionBean() {
 		return actionBean;
 	}
 
 	public void setActionBean(ActivityBean actionBean) {
 		this.actionBean = actionBean;
-	}
-
-	public int getLength() {
-		return activitiesBean.size();
 	}
 
 	public List<ActivityBean> getActivitiesBean() {
